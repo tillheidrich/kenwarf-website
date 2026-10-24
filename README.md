@@ -4,7 +4,7 @@ Marketing-Website für [Kenwarf](https://github.com/tillheidrich/kenwarf), einen
 
 **Stand: Vorschau, noch nicht gestartet.** Alle Seiten tragen `noindex`. Managed-Dienst, Testphase und Preise gibt es noch nicht.
 
-Live: https://tillheidrich.github.io/kenwarf-website/ (sobald GitHub Pages eingeschaltet ist)
+Live: https://kenwarf.heidrich-digital.de (Coolify, Dockerfile mit SITE_BASE=/). Spiegel auf GitHub Pages: https://tillheidrich.github.io/kenwarf-website/ (sobald Pages eingeschaltet ist)
 
 ## Bauen
 

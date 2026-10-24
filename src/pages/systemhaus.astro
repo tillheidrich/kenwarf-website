@@ -34,7 +34,7 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
           <rect class="box ds" x="310" y="150" width="150" height="50" rx="4" /><text class="t-s" x="322" y="180">Hybride Suche</text>
           <rect class="box ds" x="470" y="150" width="150" height="50" rx="4" /><text class="t-s" x="482" y="180">Zitatprüfung</text>
           <rect class="box ds" x="310" y="210" width="310" height="50" rx="4" /><text class="t-s" x="322" y="240">Eingang: Vorschlag, Freigabe, git-Commit</text>
-          <text class="t-m" x="310" y="290">MCP schreibt nie direkt, nur Vorschläge</text>
+          <text class="t-m" x="310" y="290">Agenten und OAuth: nur Vorschläge</text>
           <path class="lin" d="M640 110 H730" /><text class="t-m" x="650" y="102">Abschnitte</text>
           <rect class="box ds" x="730" y="40" width="220" height="140" rx="6" />
           <text class="t-b" x="746" y="68">KI-Anbieter</text><text class="t-s" x="746" y="90">frei wählbar, abschaltbar</text>
@@ -48,7 +48,7 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
           <rect class="box" x="10" y="10" width="340" height="96" rx="6" /><text class="t-b" x="26" y="38">Zugriffe</text><text class="t-s" x="26" y="62">Browser · KI-Werkzeuge über /mcp</text><text class="t-s" x="26" y="84">CLI und Skripte über /api</text>
           <path class="lin" d="M180 106 V140" />
           <rect class="box" x="10" y="140" width="340" height="230" rx="8" /><text class="t-b" x="26" y="168">{N}-Server</text><text class="t-s" x="26" y="190">ein Container, Port 7480</text>
-          <text class="t-s" x="26" y="226">Anmeldung und Rollen</text><text class="t-s" x="26" y="252">Rechte vor Ranking</text><text class="t-s" x="26" y="278">Hybride Suche, Zitatprüfung</text><text class="t-s" x="26" y="304">Eingang mit Freigabe</text><text class="t-m" x="26" y="344">MCP schreibt nie direkt</text>
+          <text class="t-s" x="26" y="226">Anmeldung und Rollen</text><text class="t-s" x="26" y="252">Rechte vor Ranking</text><text class="t-s" x="26" y="278">Hybride Suche, Zitatprüfung</text><text class="t-s" x="26" y="304">Eingang mit Freigabe</text><text class="t-m" x="26" y="344">Agenten: nur Vorschläge</text>
           <path class="lin" d="M120 370 V410 M260 370 V410" />
           <rect class="box hl" x="10" y="410" width="200" height="80" rx="6" /><text class="t-b hl-t" x="24" y="440">Datenordner</text><text class="t-s hl-t" x="24" y="464">Markdown, git</text>
           <rect class="box ds" x="220" y="410" width="130" height="80" rx="6" /><text class="t-b" x="234" y="440">Index</text><text class="t-s" x="234" y="464">neu baubar</text>
@@ -91,11 +91,12 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
     </section>
 
     <section class="block" data-zeige>
-      <h2>MCP und OAuth<small><span class="stand teilweise">teilweise</span></small></h2>
+      <h2>MCP und OAuth<small><span class="stand heute">läuft heute</span></small></h2>
       <div class="prosa">
         <p><b>Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen.</b> Unter Einstellungen steht für Admins, welcher Anbieter mit welchem Endpunkt aktiv ist und welche Daten dorthin gehen.</p>
-        <p><b>Heute:</b> MCP über Streamable HTTP unter <code>/mcp</code>, Schlüssel je Person (gespeichert als SHA-256, widerrufbar). Werkzeuge: <code>{C}_suche</code>, <code>{C}_lese</code>, <code>{C}_frage</code>, <code>{C}_fakten</code>, <code>{C}_vorschlag</code>, <code>{C}_eingang</code>, <code>{C}_briefing</code>. Ein MCP-Client hat genau die Rechte der Person, deren Schlüssel er nutzt, und kann nur Vorschläge in den Eingang legen.</p>
-        <p><b>Fahrplan:</b> Anmeldung nach der MCP-Autorisierungsspezifikation (OAuth 2.1 mit Server-Metadaten und dynamischer Client-Registrierung), damit sich Claude, ChatGPT und andere Clients ohne Handarbeit verbinden. Dazu ein lokales MCP (stdio) für Installationen, die nur über VPN erreichbar sind: Der Client auf dem Arbeitsplatz startet einen kleinen lokalen Prozess, der durch den Tunnel mit dem Server spricht.</p>
+        <p><b>Heute:</b> MCP über Streamable HTTP unter <code>/mcp</code>, Schlüssel je Person (gespeichert als SHA-256, widerrufbar). 11 Werkzeuge: <code>{C}_suche</code>, <code>{C}_lese</code>, <code>{C}_frage</code>, <code>{C}_fakten</code>, <code>{C}_kontext</code>, <code>{C}_wegweiser</code>, <code>{C}_briefing</code>, <code>{C}_eingang</code>, <code>{C}_vorschlag</code>, <code>{C}_gedaechtnis</code>, <code>{C}_sammelfreigabe</code>. Ein MCP-Client hat höchstens die Rechte der Person, deren Schlüssel er nutzt.</p>
+        <p><b>Schreiben:</b> Agenten und OAuth-Zugänge legen nur Vorschläge in den Eingang. Freigeben über MCP (<code>{C}_sammelfreigabe</code>) geht nur mit dem eigenen Schlüssel eines Freigebers oder Admins und dem ausdrücklichen Scope <code>{C}:freigeben</code>; Agenten und OAuth bekommen diesen Scope nie. Regeln gehen nur über die Weboberfläche. <code>{C}_gedaechtnis</code> schreibt die eigenen Arbeitsnotizen eines Agenten unter <code>/memories/notizen/</code>, getrennt vom Wissen; Änderungen am Wissen werden auch dort Vorschläge.</p>
+        <p><b>Anmeldung:</b> OAuth 2.1 nach der MCP-Autorisierungsspezifikation mit Protected Resource Metadata, Server-Metadaten und dynamischer Client-Registrierung ist gebaut und getestet. Dazu lokales MCP über stdio (<code>{C} mcp</code>) für Installationen, die nur über VPN erreichbar sind: Der Client auf dem Arbeitsplatz startet einen kleinen lokalen Prozess, der direkt auf dem Datenordner arbeitet oder als Brücke durch den Tunnel mit dem Server spricht. Offen ist der Praxistest mit ChatGPT und Claude.</p>
       </div>
     </section>
 
@@ -104,7 +105,7 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
       <div class="prosa">
         <ul>
           <li>Ein Container, Port per Umgebungsvariable, <code>/healthz</code> ohne Anmeldung für das Monitoring.</li>
-          <li>Backup: das Datenverzeichnis inklusive <code>.{C}/users.json</code> und Schlüsseldatei. Wiederherstellen heißt zurückkopieren und den Index neu bauen.</li>
+          <li>Backup: das ganze Datenverzeichnis inklusive <code>.{C}/</code> (Zugänge, Schlüsseldatei). Wiederherstellen heißt zurückkopieren und den Index neu bauen.</li>
           <li>Änderungen von außen, etwa in Obsidian oder per Editor, erkennt {N} und übernimmt sie als Commit.</li>
           <li><code>{C} pruefen</code> meldet kaputte Fundstellen, fällige Artikel und Abweichungen zwischen Index und Dateien.</li>
         </ul>
@@ -117,9 +118,10 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
       <h2>Updates und Lieferkette<small><span class="stand teilweise">teilweise</span></small></h2>
       <div class="prosa">
         <ul>
-          <li>Abhängigkeiten nur unter MIT, Apache-2.0, BSD oder ISC.</li>
+          <li>Abhängigkeiten nur unter freizügigen, mit AGPL-3.0 vereinbaren Lizenzen (MIT, BSD, ISC, Apache-2.0, Zlib); die Liste prüft die CI bei jedem Lauf.</li>
+          <li>SBOM im CycloneDX-Format und <code>npm audit</code> der Laufzeit-Abhängigkeiten bei jedem CI-Lauf.</li>
           <li>Updates kommen als neues Image. Das Datenformat bleibt Markdown; ein Update kann den Index neu bauen, die Dateien bleiben lesbar.</li>
-          <li>Fahrplan: SBOM im CycloneDX-Format zu jedem Release, signierte Images, öffentliches Änderungsprotokoll.</li>
+          <li>Fahrplan: SBOM als Anhang zu jedem Release, signierte Images, öffentliches Änderungsprotokoll.</li>
         </ul>
       </div>
     </section>
@@ -127,7 +129,7 @@ const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen eine
     <section class="block" data-zeige>
       <h2>Ausstieg<small><span class="stand heute">läuft heute</span></small></h2>
       <div class="prosa">
-        <p>Export als ZIP mit vollständigem git-Verlauf oder im offenen Format OKF. Import zurück mit Rundlauf-Test. Fahrplan: die Ausstiegsprobe als Knopf, die Export, leere Instanz, Import und Prüfsuite in einem Lauf vergleicht.</p>
+        <p>Export als ZIP mit vollständigem git-Verlauf oder im offenen Format OKF. Import zurück mit Rundlauf-Test. Die Ausstiegsprobe (<code>{C} ausstiegsprobe</code>) vergleicht Export, leere Instanz, Import und Prüfsuite in einem Lauf. Fahrplan: dieselbe Probe als Knopf in der Weboberfläche.</p>
       </div>
     </section>
   </div>

@@ -34,7 +34,7 @@ Deshalb gilt zweierlei:
 - Du siehst bei jeder Antwort die Fundstelle mit Datei und Zeile und kannst sie öffnen. Bei wichtigen Fragen solltest du das tun.
 - Ins Wissen kommt nichts ohne Freigabe durch einen Menschen. Die KI schlägt vor, ein Mensch entscheidet.
 
-Auf dem Fahrplan steht eine Erweiterung der Prüfsuite um Fälle, in denen ein naheliegender Abschnitt die Antwort gerade nicht stützt. Damit lässt sich messen, wie oft ein Modell auf den „falschen Nachbarn“ hereinfällt.
+Die Prüfsuite enthält deshalb Fälle, in denen ein naheliegender Abschnitt die Antwort gerade nicht stützt. Damit lässt sich messen, wie oft ein Modell auf den „falschen Nachbarn“ hereinfällt. Bisher ist das mit Test-KI belegt, der Lauf mit echten Modellen steht aus.
 
 ## Wie wir messen
 

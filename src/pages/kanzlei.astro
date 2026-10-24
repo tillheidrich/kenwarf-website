@@ -9,17 +9,18 @@ const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir mö
 ---
 <Basis titel="Für Kanzleien" beschreibung={`${N} für Rechtsanwalts- und Steuerkanzleien: KI lokal oder bei einem europäischen Anbieter, Antworten mit Fundstelle, Verschwiegenheit nach § 203 StGB, § 43e BRAO und § 62a StBerG sachlich eingeordnet.`}>
   <Seitenkopf titel={`Eine KI für die Kanzlei, die <span class="mk">im Haus</span> bleiben kann.`} ort="Kanzleien">
-    <p>Sie entscheiden, wo das Modell läuft: auf einem Rechner in Ihrer Kanzlei oder bei einem europäischen Anbieter mit Auftragsverarbeitungsvertrag. {N} verbindet es mit dem Wissen Ihrer Kanzlei und zeigt zu jeder Antwort die Fundstelle.</p>
+    <p>Sie entscheiden, wo das Modell läuft: auf einem Rechner in Ihrer Kanzlei oder bei einem europäischen Anbieter mit Auftragsverarbeitungsvertrag. Auch ein großes Modell wie Claude, ChatGPT oder Gemini ist möglich; dann sehen Sie vorher, welche Daten dorthin gehen. {N} verbindet es mit dem Wissen Ihrer Kanzlei und zeigt zu jeder Antwort die Fundstelle.</p>
   </Seitenkopf>
 
   <section class="abschnitt eng">
     <div class="rahmen">
-      <div class="kopfzeile"><h2>Drei Aufbauten</h2><p class="lead">Alle drei nutzen dieselbe Software. Welcher passt, hängt davon ab, was Ihre Kanzlei herausgeben möchte.</p></div>
+      <div class="kopfzeile"><h2>Vier Aufbauten</h2><p class="lead">Alle vier nutzen dieselbe Software. Welcher passt, hängt davon ab, was Ihre Kanzlei herausgeben möchte.</p></div>
       <table class="wege" data-zeige>
         <thead><tr><th scope="col">Aufbau</th><th scope="col">Wo {N} läuft</th><th scope="col">Wo das Modell läuft</th><th scope="col">Was das Haus verlässt</th></tr></thead>
         <tbody>
           <tr><th scope="row">Vollständig lokal</th><td data-l={`${N}`}>Server in der Kanzlei</td><td data-l="Modell">Ollama oder vLLM auf eigener Hardware</td><td data-l="Verlässt das Haus">Nichts</td></tr>
           <tr><th scope="row">Europäisches Modell</th><td data-l={`${N}`}>Server in der Kanzlei oder eigene EU-Cloud</td><td data-l="Modell">EU-Anbieter mit AV-Vertrag, etwa Mistral, IONOS oder STACKIT</td><td data-l="Verlässt das Haus">Die Textabschnitte einer Frage, an diesen Anbieter</td></tr>
+          <tr><th scope="row">Großer Anbieter</th><td data-l={`${N}`}>Server in der Kanzlei, eigene EU-Cloud oder Managed</td><td data-l="Modell">Claude, ChatGPT oder Gemini</td><td data-l="Verlässt das Haus">Die Textabschnitte einer Frage, je nach Anbieter auch in ein Drittland. Vorher § 43e Abs. 4 BRAO bzw. § 62a Abs. 4 StBerG prüfen</td></tr>
           <tr><th scope="row">Managed<small>{inhalt.managedStatus}</small></th><td data-l={`${N}`}>Eigene Instanz bei einem EU-Hoster, betrieben von {inhalt.anbieter}</td><td data-l="Modell">Lokal beim Hoster oder EU-Anbieter</td><td data-l="Verlässt das Haus">Die Inhalte, mit Verschwiegenheits- und AV-Vertrag</td></tr>
         </tbody>
       </table>

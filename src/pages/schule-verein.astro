@@ -39,8 +39,9 @@ const C = inhalt.befehl;
         <p>Ein Linux-Server oder ein NAS mit Docker reicht, etwa der Rechner, auf dem schon die Vereinscloud läuft. Kein Konto beim Hersteller, keine Telemetrie. Mit einem lokalen Modell über Ollama verlässt keine Frage das Haus.</p>
 <pre class="code" tabindex="0"><span class="k">$</span> git clone {inhalt.repoUrl ?? inhalt.repo} && cd {inhalt.cli}
 <span class="k">$</span> docker build -f deploy/Dockerfile -t {inhalt.image} .
-<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
-    -v "$PWD/daten:/daten" {inhalt.image}</pre>
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 127.0.0.1:7480:7480 \
+    -v {inhalt.cli}-daten:/daten {inhalt.image}
+<span class="k">$</span> docker logs {inhalt.cli} | grep ERSTZUGANG</pre>
         <p class="klein" style="margin-top:12px">Ein fertiges Image gibt es in der Vorschau noch nicht, gebaut wird aus dem Quellcode.</p>
         <p>Wer keinen Server hat, fragt im eigenen Umfeld: Fast jeder Verein hat jemanden, der so etwas betreut. Bei der Einrichtung helfen wir auch.</p>
       </div>

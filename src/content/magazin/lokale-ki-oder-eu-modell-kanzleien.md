@@ -17,7 +17,7 @@ Dieser Beitrag ist keine Rechtsberatung. Er ordnet, welche Fragen Sie vor dem Ei
 
 ## Zwei Fragen, die oft vermischt werden
 
-Erstens: Wo liegt das Wissen? Bei Kenwarf in einem Datenordner auf einem Server, den Sie bestimmen: im Büro, bei Ihrem Systemhaus oder als eigene Instanz bei einem Hoster in Deutschland.
+Erstens: Wo liegt das Wissen? Bei Kenwarf in einem Datenordner auf einem Server, den Sie bestimmen: im Büro, bei Ihrem Systemhaus oder als eigene Instanz bei einem Hoster in der EU.
 
 Zweitens: Wohin geht eine Frage? An das KI-Modell, das in Kenwarf eingestellt ist. Mitgeschickt werden die Frage und nur die Abschnitte, die die fragende Person sehen darf. Kenwarf zeigt unter Einstellungen, an welchen Anbieter und welchen Endpunkt die Daten gehen.
 
@@ -38,7 +38,7 @@ Daraus folgt eine einfache Regel: Je weniger Stellen Klartext sehen können, des
 
 **2. EU-Modellanbieter.** Kenwarf läuft bei Ihnen oder Ihrem Systemhaus, das Modell kommt von einem Anbieter in der EU, zum Beispiel IONOS, STACKIT oder Mistral mit EU-Endpunkt. Hier brauchen Sie einen Vertrag mit dem Anbieter, der die Verschwiegenheit nach § 43e BRAO beziehungsweise § 62a StBerG abdeckt. Lassen Sie sich Speicherung, Training und Unterauftragnehmer schriftlich bestätigen, statt sich auf Werbeseiten zu verlassen.
 
-**3. Managed mit EU-Modell.** Kenwarf läuft als eigene Instanz der Kanzlei bei einem Hoster in Deutschland, betrieben von Heidrich Digital. Das ist für Kanzleien ohne eigene IT der einfachste Weg, hat aber die längste Kette: Kanzlei, Betreiber, Hoster, Modellanbieter. Wir empfehlen, den Modellvertrag direkt zwischen Kanzlei und Anbieter zu schließen. Ob das Standard-AV-Vertragswerk eines Hosters für § 203 StGB reicht, ist eine offene Frage für die anwaltliche Prüfung.
+**3. Managed mit EU-Modell.** Kenwarf läuft als eigene Instanz der Kanzlei bei einem Hoster in der EU, betrieben von Till Heidrich – Content Creation (Heidrich Digital). Das ist für Kanzleien ohne eigene IT der einfachste Weg, hat aber die längste Kette: Kanzlei, Betreiber, Hoster, Modellanbieter. Wir empfehlen, den Modellvertrag direkt zwischen Kanzlei und Anbieter zu schließen. Ob das Standard-AV-Vertragswerk eines Hosters für § 203 StGB reicht, ist eine offene Frage für die anwaltliche Prüfung.
 
 Die Kanzleiseite fasst die drei Aufbauten mit Empfehlung zusammen: [Kanzleien](/kanzlei/).
 

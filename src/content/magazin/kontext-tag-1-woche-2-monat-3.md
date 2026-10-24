@@ -37,7 +37,7 @@ Selbst messen: den Anteil „beantwortet mit Beleg“ gegenüber „steht nicht 
 
 Wissen veraltet. Ein Preis läuft ab, eine Zuständigkeit wechselt, zwei Dokumente sagen Verschiedenes zur Gewährleistung. Ab dieser Stufe meldet Kenwarf solche Stellen: Widersprüche zwischen Fakten, abgelaufene Fristen, Fundstellen, die nicht mehr existieren, und Artikel, deren Prüftermin überschritten ist.
 
-Was heute läuft und was noch nicht, sagen wir offen. Widersprüche zwischen Fakten mit festem Feld (Preis, Frist, Zuständigkeit) erkennt Kenwarf heute. Widersprüche zwischen frei geschriebenen Artikeln, mit Beleg beider Seiten, stehen auf dem Fahrplan. Die Heute-Seite mit Ampel ist im Bau.
+Was heute läuft und was noch nicht, sagen wir offen. Widersprüche zwischen Fakten mit festem Feld (Preis, Frist, Zuständigkeit) erkennt Kenwarf heute. Widersprüche zwischen frei geschriebenen Artikeln, mit Beleg beider Seiten, stehen auf dem Fahrplan. Die Heute-Seite mit Ampel läuft heute.
 
 Wichtig ist, wer entscheidet. Die KI darf melden und vorschlagen. Welche Fassung gilt, entscheidet ein Mensch, und die Entscheidung steht mit Namen und Grund im Verlauf.
 

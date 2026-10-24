@@ -29,7 +29,7 @@ const C = inhalt.befehl;
           <li><code>packages/cli</code>: der Befehl <code>{C}</code></li>
           <li><code>packages/web</code>: die Weboberfläche auf Deutsch</li>
         </ul>
-        <p>TypeScript, Node 22, SQLite. Abhängigkeiten nur unter MIT, Apache-2.0, BSD oder ISC.</p>
+        <p>TypeScript, Node 22, SQLite. Abhängigkeiten nur unter freizügigen, mit AGPL-3.0 vereinbaren Lizenzen (MIT, BSD, ISC, Apache-2.0, Zlib); die CI prüft die Liste bei jedem Lauf.</p>
       </div>
     </section>
 
@@ -38,7 +38,7 @@ const C = inhalt.befehl;
       <div class="prosa">
         <p>Ein Fragenkatalog mit erwarteten Fundstellen misst bei jedem Lauf vier Dinge: ob die richtige Stelle unter den ersten fünf Treffern ist, ob die Belege stimmen, ob {N} bei Fangfragen schweigt, und ob Rechte durchsickern. Der letzte Wert muss null sein.</p>
 <pre class="code" tabindex="0"><span class="k">$</span> npm run pruefung -w packages/core</pre>
-        <p class="klein" style="margin-top:12px">Mit eigenen Fragen lässt sich so auch vergleichen, wie gut verschiedene Modelle mit eurem Wissen arbeiten. Der Vergleich je Modell als Bericht ist Fahrplan.</p>
+        <p class="klein" style="margin-top:12px">Mit eigenen Fragen lässt sich so auch vergleichen, wie gut verschiedene Modelle mit eurem Wissen arbeiten. Die Prüfbank je Modell (<code>{C} pruefbank</code>) legt die Ergebnisse nebeneinander und hält einen Modellwechsel an, wenn das neue Modell schlechter abschneidet. Bisher mit Test-KI belegt, mit echten Modellen steht der Lauf aus.</p>
       </div>
     </section>
 

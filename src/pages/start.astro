@@ -14,6 +14,7 @@ const I = inhalt.image;
 <Basis titel="Start in 5 Minuten" beschreibung={`${N} starten: ${inhalt.testTage} Tage als Managed-Dienst testen, in der eigenen EU-Cloud oder lokal betreiben. Eigene KI per MCP anbinden oder erste Dateien hochladen.`}>
   <Seitenkopf titel={`Nachts um drei angefangen. <span class="mk">Fünf Minuten</span> später die erste Antwort.`} ort="Start in 5 Minuten">
     <p>Drei Wege, dieselbe Software. Du kannst später wechseln, denn der Umzug ist Export und Import.</p>
+    <p class="klein">Die fünf Minuten zählen ab dem Start des fertigen Images. Gemessen haben wir lokal mit Docker rund 10 Sekunden bis zur ersten belegten Antwort, mit Test-KI und ohne die Zeit für den Bau des Images.</p>
   </Seitenkopf>
 
   <section class="abschnitt eng">
@@ -66,7 +67,7 @@ const I = inhalt.image;
     <div class="rahmen">
       <div class="kopfzeile">
         <h2>Die fünf Minuten</h2>
-        <p class="lead">So läuft der Managed-Weg ab. Ehrlich gesagt: Der Startassistent, der dich durch diese Schritte führt, ist noch Fahrplan. Die Schritte selbst funktionieren heute.</p>
+        <p class="lead">So soll der Managed-Weg ablaufen, sobald er startet. Der Managed-Dienst ist in Vorbereitung. Der Einrichtungsassistent nach der ersten Anmeldung läuft heute: Mit Docker lässt sich derselbe Ablauf lokal nachstellen, gemessen rund 10 Sekunden ab dem Start des Containers bis zur ersten belegten Antwort, mit Test-KI.</p>
       </div>
       <ol class="zeitstrahl" data-zeige>
         <li><b>Minute 0</b><span>Testphase starten, Betriebsname eintragen.</span></li>
@@ -114,7 +115,7 @@ const I = inhalt.image;
         </ul>
         <p>Unter „Wohin gehen meine Daten?“ zeigt {N}, welcher Anbieter mit welchem Endpunkt aktiv ist.</p>
         <h3>{N} für deine KI-Werkzeuge</h3>
-        <p>Claude, ChatGPT, Cursor oder ein eigener Agent verbinden sich über MCP. Sie dürfen suchen, lesen und fragen. Schreiben dürfen sie nicht, nur Vorschläge in den Eingang legen. Heute mit einem Schlüssel je Person; die Anmeldung per OAuth ohne Handarbeit ist Fahrplan.</p>
+        <p>Claude, ChatGPT, Cursor oder ein eigener Agent verbinden sich über MCP. Sie dürfen suchen, lesen und fragen. Agenten und OAuth-Zugänge legen nur Vorschläge in den Eingang. Freigeben über MCP geht nur mit dem eigenen Schlüssel eines Freigebers und dem ausdrücklichen Scope <code>kern:freigeben</code>, nie für Agenten oder OAuth. Eigene Arbeitsnotizen eines Agenten liegen getrennt vom Wissen. Heute laufen Schlüssel je Person, die Anmeldung per OAuth 2.1 und lokales MCP über stdio für Installationen im VPN; der Praxistest mit ChatGPT und Claude steht aus.</p>
       </div>
       <div data-zeige>
         <pre class="code" tabindex="0" aria-label="MCP-Konfiguration">{`{
@@ -160,11 +161,12 @@ const I = inhalt.image;
         <li><div><h3>Container starten</h3>
 <pre class="code" tabindex="0"><span class="k">$</span> git clone {R} && cd {inhalt.cli}
 <span class="k">$</span> docker build -f deploy/Dockerfile -t {I} .
-<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
-    -v /srv/{inhalt.cli}-daten:/daten {I}</pre></div></li>
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 127.0.0.1:7480:7480 \
+    -v {inhalt.cli}-daten:/daten {I}</pre>
+<p class="klein">Das benannte Volume <code>{inhalt.cli}-daten</code> gehört gleich dem Benutzer im Container. Wer lieber einen Ordner nimmt, gibt ihn vorher frei: <code>sudo chown 1000:1000 ordner</code>.</p></div></li>
         <li><div><h3>Erstes Passwort holen</h3><p>Beim ersten Start legt der Container den Admin an und schreibt das Passwort einmal ins Protokoll.</p>
-<pre class="code" tabindex="0"><span class="k">$</span> docker logs {inhalt.cli}</pre></div></li>
-        <li><div><h3>HTTPS davor</h3><p>Hinter einen Reverse Proxy wie Caddy, Traefik oder Coolify. Dann im Browser öffnen und anmelden.</p></div></li>
+<pre class="code" tabindex="0"><span class="k">$</span> docker logs {inhalt.cli} | grep ERSTZUGANG</pre></div></li>
+        <li><div><h3>HTTPS davor</h3><p>Hinter einen Reverse Proxy wie Caddy, Traefik oder Coolify. Bis HTTPS davor steht, lauscht der Container nur auf 127.0.0.1. Dann im Browser öffnen und anmelden.</p></div></li>
       </ol>
     </div>
   </section>
@@ -179,8 +181,9 @@ const I = inhalt.image;
       <div>
 <pre class="code" tabindex="0"><span class="k">$</span> git clone {R} && cd {inhalt.cli}
 <span class="k">$</span> docker build -f deploy/Dockerfile -t {I} .
-<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
-    -v "$PWD/daten:/daten" {I}
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 127.0.0.1:7480:7480 \
+    -v {inhalt.cli}-daten:/daten {I}
+<span class="k">$</span> docker logs {inhalt.cli} | grep ERSTZUGANG
 <span class="k"># dann im Browser:</span> <span class="m">http://localhost:7480</span></pre>
       </div>
     </div>

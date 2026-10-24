@@ -4,7 +4,11 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-const BASIS = '/kenwarf-website';
+const BASIS = (process.env.SITE_BASE ?? '/kenwarf-website').replace(/\/$/, '');
+if (BASIS === '') {
+  console.log('basis.mjs: Basis ist die Wurzel, nichts zu ergänzen');
+  process.exit(0);
+}
 const DIST = 'dist';
 const attr = new RegExp(String.raw`(\s(?:href|src|action|poster)=["'])/(?!/|${BASIS.slice(1)}/)`, 'g');
 const srcset = /(\ssrcset=["'])([^"']*)(["'])/g;

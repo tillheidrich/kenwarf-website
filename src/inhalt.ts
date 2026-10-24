@@ -10,8 +10,9 @@
 const NAME = 'Kenwarf';
 const CLI = 'kenwarf';
 /** Vorschau auf GitHub Pages: Projektseite unter /kenwarf-website/. Muss zu astro.config.mjs (base) passen. */
-export const BASIS = '/kenwarf-website';
-export const ORIGIN = 'https://tillheidrich.github.io';
+// Basis-Pfad und Herkunft per Umgebung: Pages-Vorschau unter /kenwarf-website (Standard), eigene Domain mit SITE_BASE=/ (leer = Wurzel).
+export const BASIS = ((import.meta.env.SITE_BASE as string | undefined) ?? process.env.SITE_BASE ?? '/kenwarf-website').replace(/\/$/, '');
+export const ORIGIN = process.env.SITE_ORIGIN ?? 'https://tillheidrich.github.io';
 
 export type Modell = 'opensource' | 'lizenz';
 export type Stand = 'heute' | 'teilweise' | 'fahrplan';

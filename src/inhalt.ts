@@ -30,7 +30,7 @@ export const inhalt = {
   /** Noch kein veröffentlichtes Image: gebaut wird lokal aus dem Repo. */
   image: `${CLI}:vorschau`,
   /** Link zum Code-Repo. null, solange das Repo nicht öffentlich ist. */
-  repoUrl: null as string | null,
+  repoUrl: 'https://github.com/tillheidrich/kenwarf' as string | null,
   repo: `https://github.com/tillheidrich/${CLI}`,
   /** Lizenz ist Tills Entscheidung. Bis dahin wird sie als „vorgesehen“ gekennzeichnet. */
   lizenzName: 'AGPL-3.0-only',

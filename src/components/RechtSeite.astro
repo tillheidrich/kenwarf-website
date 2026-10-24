@@ -1,0 +1,10 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from './Seitenkopf.astro';
+interface Props { titel: string; beschreibung: string; einleitung: string; }
+const { titel, beschreibung, einleitung } = Astro.props;
+---
+<Basis titel={titel} beschreibung={beschreibung}>
+  <Seitenkopf titel={titel} ort={titel}><p>{einleitung}</p></Seitenkopf>
+  <section class="abschnitt eng"><div class="rahmen prosa"><slot /></div></section>
+</Basis>

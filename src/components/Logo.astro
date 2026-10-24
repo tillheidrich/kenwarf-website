@@ -1,0 +1,12 @@
+---
+// Bildmarke: ein Ordnerrücken mit Griffloch und Rückenschild. Name kommt aus inhalt.ts.
+import { inhalt } from '../inhalt';
+---
+<a class="marke" href="/" aria-label={`${inhalt.name}, Startseite`}>
+  <svg viewBox="0 0 22 30" aria-hidden="true">
+    <rect x="1" y="1" width="20" height="28" rx="2.5" fill="currentColor" />
+    <rect x="4.5" y="4.5" width="13" height="8" rx="1" fill="oklch(0.925 0.185 118)" />
+    <rect x="7.5" y="17" width="7" height="8.5" rx="3.5" fill="none" stroke="var(--papier)" stroke-width="1.6" />
+  </svg>
+  <span>{inhalt.name}</span>
+</a>

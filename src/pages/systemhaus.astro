@@ -1,0 +1,152 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Foto from '../components/Foto.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Bild from '../components/Bild.astro';
+import Icon from '../components/Icon.astro';
+import { inhalt, mail } from '../inhalt';
+const N = inhalt.name;
+const C = inhalt.befehl;
+const anfrage = mail(`${N}: Technische Unterlagen`, `Hallo,\n\nwir betreuen einen Kunden, der ${N} einsetzen möchte, und hätten gern die technischen Unterlagen.\n\nSystemhaus / IT:\nUmgebung (Cloud, eigenes RZ, nur VPN):\n\nViele Grüße`);
+---
+<Basis titel="Für IT und Systemhäuser" beschreibung={`${N} technisch: ein Container, Markdown und git als Datenbasis, Rechte vor dem Ranking, MCP ohne Schreibrecht, KI-Anbieter frei wählbar, Betrieb, Backup und Updates.`}>
+  <Seitenkopf titel={`Für die IT, die <span class="mk">zuerst fragt</span>.`} ort="IT und Systemhaus">
+    <p>Wo liegen die Daten, wer darf was sehen, was geht an welches Modell, wie sichere ich das und wie komme ich wieder raus? Hier stehen die Antworten, mit Kennzeichnung, was heute läuft und was Fahrplan ist.</p>
+  </Seitenkopf>
+
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <h2 class="sr">Architektur</h2>
+      <figure style="margin:0" data-zeige>
+        <svg class="arch arch-breit" viewBox="0 0 960 430" role="img" aria-labelledby="arch-t">
+          <title id="arch-t">{`Architektur: Browser, KI-Werkzeuge und CLI sprechen mit dem ${N}-Server. Der Server liest und schreibt den Datenordner aus Markdown-Dateien mit git und hält einen wegwerfbaren SQLite-Index. Nur der gewählte KI-Anbieter bekommt Textabschnitte.`}</title>
+          <g>
+            <rect class="box" x="10" y="40" width="190" height="64" rx="6" /><text class="t-b" x="26" y="68">Browser</text><text class="t-s" x="26" y="88">Weboberfläche, Deutsch</text>
+            <rect class="box" x="10" y="130" width="190" height="64" rx="6" /><text class="t-b" x="26" y="158">KI-Werkzeuge</text><text class="t-s" x="26" y="178">Claude, ChatGPT, Agenten</text>
+            <rect class="box" x="10" y="220" width="190" height="64" rx="6" /><text class="t-b" x="26" y="248">CLI und Skripte</text><text class="t-s" x="26" y="268">REST-API, {C}-Befehle</text>
+          </g>
+          <path class="lin" d="M200 72 H290 M200 162 H290 M200 252 H290" />
+          <text class="t-m" x="212" y="64">HTTPS</text><text class="t-m" x="212" y="154">/mcp</text><text class="t-m" x="212" y="244">/api</text>
+          <rect class="box" x="290" y="20" width="350" height="290" rx="8" />
+          <text class="t-b" x="310" y="50">{N}-Server</text><text class="t-s" x="310" y="70">ein Container, Node 22, Port 7480</text>
+          <rect class="box ds" x="310" y="90" width="150" height="50" rx="4" /><text class="t-s" x="322" y="120">Anmeldung, Rollen</text>
+          <rect class="box ds" x="470" y="90" width="150" height="50" rx="4" /><text class="t-s" x="482" y="120">Rechte vor Ranking</text>
+          <rect class="box ds" x="310" y="150" width="150" height="50" rx="4" /><text class="t-s" x="322" y="180">Hybride Suche</text>
+          <rect class="box ds" x="470" y="150" width="150" height="50" rx="4" /><text class="t-s" x="482" y="180">Zitatprüfung</text>
+          <rect class="box ds" x="310" y="210" width="310" height="50" rx="4" /><text class="t-s" x="322" y="240">Eingang: Vorschlag, Freigabe, git-Commit</text>
+          <text class="t-m" x="310" y="290">MCP schreibt nie direkt, nur Vorschläge</text>
+          <path class="lin" d="M640 110 H730" /><text class="t-m" x="650" y="102">Abschnitte</text>
+          <rect class="box ds" x="730" y="40" width="220" height="140" rx="6" />
+          <text class="t-b" x="746" y="68">KI-Anbieter</text><text class="t-s" x="746" y="90">frei wählbar, abschaltbar</text>
+          <text class="t-s" x="746" y="116">lokal: Ollama, vLLM</text><text class="t-s" x="746" y="136">EU: Mistral, IONOS, STACKIT</text><text class="t-s" x="746" y="156">Claude, ChatGPT, Gemini</text>
+          <path class="lin" d="M400 310 V350 M560 310 V350" />
+          <rect class="box hl" x="290" y="350" width="230" height="70" rx="6" /><text class="t-b hl-t" x="306" y="378">Datenordner</text><text class="t-s hl-t" x="306" y="400">Markdown + YAML, git: Wahrheit</text>
+          <rect class="box ds" x="540" y="350" width="200" height="70" rx="6" /><text class="t-b" x="556" y="378">Index</text><text class="t-s" x="556" y="400">SQLite, neu baubar</text>
+        </svg>
+        <svg class="arch arch-schmal" viewBox="0 0 360 640" role="img" aria-labelledby="arch-t2">
+          <title id="arch-t2">{`Architektur, vereinfacht: Zugriffe, ${N}-Server, Datenordner und Index, KI-Anbieter.`}</title>
+          <rect class="box" x="10" y="10" width="340" height="96" rx="6" /><text class="t-b" x="26" y="38">Zugriffe</text><text class="t-s" x="26" y="62">Browser · KI-Werkzeuge über /mcp</text><text class="t-s" x="26" y="84">CLI und Skripte über /api</text>
+          <path class="lin" d="M180 106 V140" />
+          <rect class="box" x="10" y="140" width="340" height="230" rx="8" /><text class="t-b" x="26" y="168">{N}-Server</text><text class="t-s" x="26" y="190">ein Container, Port 7480</text>
+          <text class="t-s" x="26" y="226">Anmeldung und Rollen</text><text class="t-s" x="26" y="252">Rechte vor Ranking</text><text class="t-s" x="26" y="278">Hybride Suche, Zitatprüfung</text><text class="t-s" x="26" y="304">Eingang mit Freigabe</text><text class="t-m" x="26" y="344">MCP schreibt nie direkt</text>
+          <path class="lin" d="M120 370 V410 M260 370 V410" />
+          <rect class="box hl" x="10" y="410" width="200" height="80" rx="6" /><text class="t-b hl-t" x="24" y="440">Datenordner</text><text class="t-s hl-t" x="24" y="464">Markdown, git</text>
+          <rect class="box ds" x="220" y="410" width="130" height="80" rx="6" /><text class="t-b" x="234" y="440">Index</text><text class="t-s" x="234" y="464">neu baubar</text>
+          <path class="lin ds" d="M180 490 V530" />
+          <rect class="box ds" x="10" y="530" width="340" height="100" rx="6" /><text class="t-b" x="26" y="558">KI-Anbieter, frei wählbar</text><text class="t-s" x="26" y="582">lokal, EU oder groß</text><text class="t-s" x="26" y="604">bekommt nur Textabschnitte</text>
+        </svg>
+      </figure>
+      <style>
+        .arch-schmal { display: none; max-width: 420px; }
+        @media (max-width: 720px) { .arch-breit { display: none; } .arch-schmal { display: block; } }
+      </style>
+    </div>
+  </section>
+
+  <div class="rahmen">
+    <section class="block" data-zeige>
+      <h2>Daten<small><span class="stand heute">läuft heute</span></small></h2>
+      <div class="prosa">
+        <p>Die einzige Wahrheit ist ein Verzeichnis mit Markdown-Dateien und YAML-Kopf, versioniert mit git. Die SQLite-Datenbank mit Volltext (FTS5, deutsche Stammformen und Trigramme) und optionalen Vektoren ist ein Index. Er lässt sich jederzeit aus den Dateien neu bauen.</p>
+        <ul>
+          <li>Kein Telemetrie-Aufruf, keine Lizenzprüfung nach Hause, keine Laufzeit-CDNs.</li>
+          <li>Nach außen geht nur, was an den konfigurierten KI-Anbieter muss: die gefundenen Textabschnitte einer Frage. Die Seite „Wohin gehen meine Daten?“ zeigt Anbieter, Endpunkt und Region.</li>
+          <li>Ohne KI-Anbieter läuft {N} im Testmodus und antwortet mit wörtlichen Sätzen aus den Fundstellen.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Rechte und Sicherheit<small><span class="stand heute">läuft heute</span></small></h2>
+      <div class="prosa">
+        <ul>
+          <li>Rollen: Leser, Autor, Freigeber, Admin. Sichtbarkeit je Datei: nur ich, ein Team oder der ganze Betrieb.</li>
+          <li>Der Rechtefilter läuft in der Datenbank vor dem Ranking. Was jemand nicht sehen darf, wird nicht gefunden, nicht gezählt und nicht an ein Modell geschickt. Die Prüfsuite misst Rechte-Lecks; der Sollwert ist null.</li>
+          <li>Private Dateien sind auch für Admins nicht sichtbar. Wer nach etwas fragt, das er nicht sehen darf, bekommt „nicht gefunden“, nie „keine Rechte“.</li>
+          <li>Passwörter mit scrypt. Sitzungs-Cookie, bei HTTPS mit <code>__Host-</code>-Präfix. Schreibende Anfragen brauchen einen eigenen Header gegen CSRF. Content-Security-Policy nur <code>self</code>.</li>
+          <li>Eine Regeldatei legt fest, was nie hineinkommt, zum Beispiel Lohn- oder Gesundheitsdaten. Ändern darf sie nur ein Admin.</li>
+          <li>Endgültiges Löschen nach Art. 17 DSGVO entfernt eine Datei auch aus dem Verlauf.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>MCP und OAuth<small><span class="stand teilweise">teilweise</span></small></h2>
+      <div class="prosa">
+        <p><b>Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen.</b> Unter Einstellungen steht für Admins, welcher Anbieter mit welchem Endpunkt aktiv ist und welche Daten dorthin gehen.</p>
+        <p><b>Heute:</b> MCP über Streamable HTTP unter <code>/mcp</code>, Schlüssel je Person (gespeichert als SHA-256, widerrufbar). Werkzeuge: <code>{C}_suche</code>, <code>{C}_lese</code>, <code>{C}_frage</code>, <code>{C}_fakten</code>, <code>{C}_vorschlag</code>, <code>{C}_eingang</code>, <code>{C}_briefing</code>. Ein MCP-Client hat genau die Rechte der Person, deren Schlüssel er nutzt, und kann nur Vorschläge in den Eingang legen.</p>
+        <p><b>Fahrplan:</b> Anmeldung nach der MCP-Autorisierungsspezifikation (OAuth 2.1 mit Server-Metadaten und dynamischer Client-Registrierung), damit sich Claude, ChatGPT und andere Clients ohne Handarbeit verbinden. Dazu ein lokales MCP (stdio) für Installationen, die nur über VPN erreichbar sind: Der Client auf dem Arbeitsplatz startet einen kleinen lokalen Prozess, der durch den Tunnel mit dem Server spricht.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Betrieb<small><span class="stand heute">läuft heute</span></small></h2>
+      <div class="prosa">
+        <ul>
+          <li>Ein Container, Port per Umgebungsvariable, <code>/healthz</code> ohne Anmeldung für das Monitoring.</li>
+          <li>Backup: das Datenverzeichnis inklusive <code>.{C}/users.json</code> und Schlüsseldatei. Wiederherstellen heißt zurückkopieren und den Index neu bauen.</li>
+          <li>Änderungen von außen, etwa in Obsidian oder per Editor, erkennt {N} und übernimmt sie als Commit.</li>
+          <li><code>{C} pruefen</code> meldet kaputte Fundstellen, fällige Artikel und Abweichungen zwischen Index und Dateien.</li>
+        </ul>
+        <h3>Managed-Betrieb durch {inhalt.anbieter} <span class="stand fahrplan">{inhalt.managedStatus}</span></h3>
+        <p>Eine Instanz je Kunde bei einem Hoster in der EU, AV-Vertrag mit TOM, Verschlüsselung, Backups, Vorfallplan. Das Verfügbarkeitsversprechen wird vor dem Start festgelegt und so bemessen, dass es gehalten wird.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Updates und Lieferkette<small><span class="stand teilweise">teilweise</span></small></h2>
+      <div class="prosa">
+        <ul>
+          <li>Abhängigkeiten nur unter MIT, Apache-2.0, BSD oder ISC.</li>
+          <li>Updates kommen als neues Image. Das Datenformat bleibt Markdown; ein Update kann den Index neu bauen, die Dateien bleiben lesbar.</li>
+          <li>Fahrplan: SBOM im CycloneDX-Format zu jedem Release, signierte Images, öffentliches Änderungsprotokoll.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Ausstieg<small><span class="stand heute">läuft heute</span></small></h2>
+      <div class="prosa">
+        <p>Export als ZIP mit vollständigem git-Verlauf oder im offenen Format OKF. Import zurück mit Rundlauf-Test. Fahrplan: die Ausstiegsprobe als Knopf, die Export, leere Instanz, Import und Prüfsuite in einem Lauf vergleicht.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="abschnitt eng">
+    <div class="rahmen zwei">
+      <Bild src="/produkt/datenweg-ausschnitt.webp" alt="Einstellungen, Wohin gehen meine Daten: Anbieter, Endpunkt und welche Daten an das Modell gehen." breite={1158} hoehe={680}><b>Datenweg.</b> Welcher Anbieter, welcher Endpunkt, welche Daten. Für Admins sichtbar in den Einstellungen.</Bild>
+      <Bild src="/produkt/benutzer-ausschnitt.webp" alt="Einstellungen, Benutzer und Rollen: Liste mit Rollen Leser, Autor, Freigeber und Admin." breite={1158} hoehe={800}><b>Benutzer und Rollen.</b> Vier Rollen, Teams, Sichtbarkeit je Datei.</Bild>
+    </div>
+  </section>
+
+  <section class="band kante">
+    <Foto name="rechenzentrum-greifswald" form="voll" fokus="40% 50%" alt="Serverschränke mit grün leuchtenden Statuslichtern in einem abgedunkelten Raum, vorne ein Rollwagen mit Laptop." ort="Rechenzentrum der Universität Greifswald, Foto: Till Heidrich" />
+  </section>
+
+  <section class="schluss kante">
+    <div class="rahmen zeile">
+      <div><h2>Technische Unterlagen anfordern.</h2><p class="lead" style="margin-top:20px">Architektur, Datenfluss, Rechte-Modell und die Ergebnisse der Prüfsuite. Für dich und deinen Kunden.</p></div>
+      <div><a class="knopf haupt" href={anfrage}>Unterlagen anfragen <Icon name="pfeil" /></a></div>
+    </div>
+  </section>
+</Basis>

@@ -1,0 +1,56 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Icon from '../components/Icon.astro';
+import { inhalt } from '../inhalt';
+const N = inhalt.name;
+const C = inhalt.befehl;
+---
+<Basis titel="Quellcode" beschreibung={`Der Quellcode von ${N}: Pakete, Prüfsuite, Lizenz und wie du mitbaust. Selbst hosten ist kostenlos.`}>
+  <Seitenkopf titel={`Lies nach, <span class="mk">was es tut</span>.`} ort="Quellcode">
+    <p>Ein Werkzeug, das Belege verlangt, sollte selbst nachprüfbar sein. Der Quellcode von {N} ist offen. Wer selbst hostet, zahlt nichts. Bezahlt werden Betrieb, Einrichtung und Hilfe.</p>
+  </Seitenkopf>
+
+  <div class="rahmen">
+    <section class="block" data-zeige>
+      <h2>Lizenz<small><span class={`stand ${inhalt.lizenzEntschieden ? 'heute' : 'fahrplan'}`}>{inhalt.lizenzEntschieden ? 'entschieden' : 'vorgesehen'}</span></small></h2>
+      <div class="prosa">
+        <p>{inhalt.lizenzEntschieden ? 'Der Quellcode steht unter der' : 'Vorgesehen ist die'} {inhalt.lizenzName}. Sie erlaubt Nutzung, Änderung und Selbstbetrieb ohne Gebühr. Wer {N} verändert als Dienst für andere anbietet, muss seine Änderungen ebenfalls offenlegen.</p>
+        {!inhalt.lizenzEntschieden && <p class="klein">Die Lizenz ist noch nicht endgültig festgelegt. Bis dahin gilt diese Seite als Ankündigung.</p>}
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Was im Repo liegt</h2>
+      <div class="prosa">
+        <ul>
+          <li><code>packages/core</code>: Engine mit Ordner, Index, Suche, Fakten, Eingang, Zitatprüfung, Export und Import</li>
+          <li><code>packages/server</code>: REST-API und MCP-Server</li>
+          <li><code>packages/cli</code>: der Befehl <code>{C}</code></li>
+          <li><code>packages/web</code>: die Weboberfläche auf Deutsch</li>
+        </ul>
+        <p>TypeScript, Node 22, SQLite. Abhängigkeiten nur unter MIT, Apache-2.0, BSD oder ISC.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Die Prüfsuite</h2>
+      <div class="prosa">
+        <p>Ein Fragenkatalog mit erwarteten Fundstellen misst bei jedem Lauf vier Dinge: ob die richtige Stelle unter den ersten fünf Treffern ist, ob die Belege stimmen, ob {N} bei Fangfragen schweigt, und ob Rechte durchsickern. Der letzte Wert muss null sein.</p>
+<pre class="code" tabindex="0"><span class="k">$</span> npm run pruefung -w packages/core</pre>
+        <p class="klein" style="margin-top:12px">Mit eigenen Fragen lässt sich so auch vergleichen, wie gut verschiedene Modelle mit eurem Wissen arbeiten. Der Vergleich je Modell als Bericht ist Fahrplan.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Mitbauen</h2>
+      <div class="prosa">
+        <p>Fehler melden, Importe für weitere Systeme, Übersetzungen, Prüffragen für deine Branche. Alles über GitHub.</p>
+        {inhalt.repoUrl
+          ? <p><a class="knopf neben" href={inhalt.repoUrl}>Repo auf GitHub <Icon name="extern" /></a></p>
+          : <p class="klein">Das Repo wird gerade veröffentlicht. Der Link folgt hier.</p>}
+        <p class="klein">Vorabversion in aktiver Entwicklung. Pakete, Befehle und Variablen heißen im Code noch <code>{C}</code>, der Umbau auf den neuen Namen folgt.</p>
+      </div>
+    </section>
+  </div>
+</Basis>

@@ -1,0 +1,89 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Foto from '../components/Foto.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Bild from '../components/Bild.astro';
+import Schluss from '../components/Schluss.astro';
+import Regal from '../components/Regal.astro';
+import { inhalt } from '../inhalt';
+const N = inhalt.name;
+---
+<Basis titel="So funktioniert es" beschreibung={`Wie ${N} aus Unterlagen belegtes Wissen macht und was dein Kontext nach Tag 1, Woche 2, Monat 3 und bei der Übergabe wert ist. Mit ehrlicher Kennzeichnung, was heute läuft und was Fahrplan ist.`}>
+  <Seitenkopf titel={`Ein Ordner, der mit <span class="mk">jeder Woche</span> mehr wert ist.`} ort="So funktioniert es">
+    <p>Die Software ist das Kleinste daran. Der Wert entsteht, weil ihr euer Wissen einmal aufschreibt, belegt und pflegt. Modelle kommen und gehen, der Ordner bleibt. Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen. Hier steht Stufe für Stufe, was du davon hast und was davon heute schon läuft.</p>
+  </Seitenkopf>
+
+  <section class="abschnitt eng">
+    <div class="rahmen zwei">
+      <div class="prosa" data-zeige>
+        <h2>Der Kreislauf</h2>
+        <p>Du legst Rohmaterial in den Ordner <code>quellen/</code>: Preisblätter, Mails, Abläufe, Sprachnotizen, Webseiten. {N} lässt diese Dateien unverändert.</p>
+        <p>Daraus schlägt die KI Artikel für <code>wissen/</code> vor: mit Kurzfassung, Stand, verantwortlicher Person, Prüftermin und Fundstellen. Der Vorschlag landet im Eingang. Ein Mensch gibt frei, ändert oder lehnt ab, und jede Entscheidung wird ein Eintrag im Verlauf.</p>
+        <p>Wer fragt, bekommt Antworten aus beiden Schichten, mit Datei, Abschnitt und Zeile. Was jemand nicht sehen darf, findet die Suche gar nicht erst.</p>
+      </div>
+      <Bild src="/produkt/import-ausschnitt.webp" alt="Die Seite Hinzufügen mit Import aus Obsidian, Notion, Outline, Confluence und Markdown." breite={1158} hoehe={1080}>
+        <b>Hinzufügen.</b> Dateien, Text, Webseiten oder ein ganzer Import aus Obsidian, Notion, Outline oder Confluence.
+      </Bild>
+    </div>
+  </section>
+
+  <section class="dunkel abschnitt eng">
+    <div class="rahmen">
+      <div class="kopfzeile">
+        <h2>Sechs Stufen</h2>
+        <p class="lead">Jede Stufe hat einen Nutzen, den ihr selbst messen könnt. Gezählt wird auf eurem Gerät, nicht bei uns. Wähle einen Ordnerrücken.</p>
+      </div>
+      <Regal voll />
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <div class="rahmen">
+      <div class="kopfzeile">
+        <h2>Vom ersten Tag bis zur Übergabe</h2>
+        <p class="lead">Am ersten Tag liegt Rohmaterial im Ordner. Bei der Übergabe ist daraus ein Wissensstand geworden, den die Nächsten lesen können, auch ohne {N}.</p>
+      </div>
+      <div class="bildpaar">
+        <Foto name="samenernte-saecke" form="hoch" fokus="50% 60%" sizes="(min-width: 900px) 38vw, 100vw" alt="Ein Stapel Netzsäcke voller Zapfen auf einem Fliesenboden vor einer weißen Wand." ort="Samenernte im Universitätsforst"><span><b>Tag 1.</b> Gesammelt, noch nicht sortiert.</span></Foto>
+        <Foto name="kueche-sunne" form="quer" sizes="(min-width: 900px) 52vw, 100vw" alt="Küche in einem alten Holzhaus: runder Tisch mit drei Stühlen, Vorhang am Fenster, ein Holzschrank, alles so, wie es zuletzt benutzt wurde." ort="Altes Haus bei Sunne, Schweden"><span><b>Übergabe.</b> Wer nachkommt, findet alles an seinem Platz.</span></Foto>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="abschnitt">
+    <div class="rahmen zwei schief">
+      <div class="prosa" data-zeige>
+        <h2>Wie eine Antwort entsteht</h2>
+        <p>Das ist der Teil, an dem die meisten KI-Werkzeuge raten. {N} rät nicht.</p>
+      </div>
+      <ol class="schritte" data-zeige>
+        <li><div><h3>Suchen, mit Rechten</h3><p>Die Suche versteht deutsche Wortformen und zusammengesetzte Wörter. Dateien, die du nicht sehen darfst, sind schon vor dem Ranking aussortiert.</p></div></li>
+        <li><div><h3>Fakten zuerst</h3><p>Fragen nach Preisen, Fristen und Zuständigkeiten beantwortet die Faktenschicht, inklusive Gültigkeit.</p></div></li>
+        <li><div><h3>Nummerierte Abschnitte an die KI</h3><p>Das Modell bekommt nur die gefundenen Abschnitte und muss jeden Punkt einer Nummer zuordnen.</p></div></li>
+        <li><div><h3>Zitat gegen die Datei prüfen</h3><p>Jedes Zitat muss wörtlich im angegebenen Zeilenbereich stehen. Wenn nicht, fliegt der Beleg raus und mit ihm der Punkt.</p></div></li>
+        <li><div><h3>Nichts übrig? Dann steht es nicht drin.</h3><p>Ohne belegten Punkt gibt es keine Antwort, sondern den Hinweis, dass die Unterlagen dazu schweigen.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="abschnitt" id="aufnahmen">
+    <div class="rahmen zwei schief">
+      <div class="prosa" data-zeige>
+        <h2>Aufnahmen und Geräte: nur mit Einwilligung</h2>
+        <p>Rekorder, Mitschriften und KI-Brillen liefern Rohmaterial. Kontext wird daraus erst, wenn klar ist, was davon gilt, wer zugestimmt hat und wer es sehen darf.</p>
+        <p>Heimliches Aufnehmen ist in Deutschland strafbar (§ 201 StGB). Im Betrieb redet der Betriebsrat mit. {N} nimmt deshalb nie selbst auf und bewertet nie Menschen.</p>
+        <p><a href="/magazin/kontext-ist-mehr-als-transkripte/">Warum Kontext mehr ist als Transkripte und PDFs</a></p>
+      </div>
+      <ol class="schritte" data-zeige>
+        <li><div><h3>Heute: Datei hochladen</h3><p>Audiodateien und Mitschriften kommen als Datei in den Ordner <code>quellen/</code>, mit der Sichtbarkeit, die du beim Hinzufügen wählst.</p></div></li>
+        <li><div><h3>Als Nächstes: Wer ist zu hören?</h3><p>Bei jeder Aufnahme fragt {N}, wer dabei war, wer zugestimmt hat, wozu sie dient und wann sie gelöscht wird.</p></div></li>
+        <li><div><h3>Als Nächstes: Unklar heißt gesperrt</h3><p>Fehlt eine Zustimmung, geht die Aufnahme an keine KI und in keine Suche anderer. Das Originalaudio wird nach kurzer Frist gelöscht.</p></div></li>
+        <li><div><h3>Nie: Stimmung oder Leistung auswerten</h3><p>Keine Analyse von Tonfall, Redeanteilen oder Verhalten einzelner Menschen. Am Arbeitsplatz ist Emotionserkennung ohnehin verboten.</p></div></li>
+        <li><div><h3>Deine Wahl der KI</h3><p>Claude, ChatGPT, Gemini (über OpenAI-kompatible Schnittstelle), Mistral oder ein lokales Modell. Vorher siehst du, wohin welche Daten gehen.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <Schluss />
+</Basis>

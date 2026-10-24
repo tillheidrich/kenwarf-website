@@ -1,0 +1,19 @@
+---
+import RechtSeite from '../components/RechtSeite.astro';
+import { inhalt } from '../inhalt';
+---
+<RechtSeite titel="Impressum" beschreibung={`Impressum der Vorschau-Website von ${inhalt.name}.`} einleitung="Angaben nach § 5 Digitale-Dienste-Gesetz (DDG).">
+  <h2>Anbieter</h2>
+  <p>Till Heidrich – Content Creation<br />Inhaber: Till Heidrich<br />Rotdornweg 17<br />21255 Tostedt<br />Deutschland</p>
+  <h2>Kontakt</h2>
+  <p>Telefon: <a href="tel:+4915773953819">0157 73953819</a><br />E-Mail: <a href="mailto:info@tillheidrich.de">info@tillheidrich.de</a></p>
+  <h2>Umsatzsteuer</h2>
+  <p>Kleinunternehmer nach § 19 UStG. Es wird keine Umsatzsteuer ausgewiesen, eine Umsatzsteuer-Identifikationsnummer ist nicht vorhanden.</p>
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <p>Till Heidrich, Rotdornweg 17, 21255 Tostedt</p>
+  <h2>Streitbeilegung</h2>
+  <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  <h2>Stand dieser Website</h2>
+  <p>Dies ist eine Vorschau. {inhalt.name} ist noch nicht gestartet: Managed-Dienst, Testphase und Preise gibt es noch nicht. Der Quellcode ist eine Vorabversion.</p>
+  <p>Fotos: Till Heidrich. Alle Rechte vorbehalten.</p>
+</RechtSeite>

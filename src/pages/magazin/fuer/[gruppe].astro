@@ -1,0 +1,23 @@
+---
+import Basis from '../../../layouts/Basis.astro';
+import Seitenkopf from '../../../components/Seitenkopf.astro';
+import ArtikelListe from '../../../components/ArtikelListe.astro';
+import MagazinFilter from '../../../components/MagazinFilter.astro';
+import { alleArtikel, zielgruppen } from '../../../magazin';
+export function getStaticPaths() {
+  return Object.keys(zielgruppen).map((gruppe) => ({ params: { gruppe } }));
+}
+const { gruppe } = Astro.params as { gruppe: keyof typeof zielgruppen };
+const name = zielgruppen[gruppe];
+const artikel = (await alleArtikel()).filter((a) => a.data.zielgruppen.includes(gruppe));
+---
+<Basis titel={`Magazin für ${name}`} beschreibung={`Beiträge im Magazin für ${name}.`}>
+  <Seitenkopf titel={`Für ${name}`} ort="Magazin"><p>{artikel.length} {artikel.length === 1 ? 'Beitrag' : 'Beiträge'}.</p></Seitenkopf>
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <MagazinFilter aktiv={gruppe} />
+      <h2 class="sr">Beiträge</h2>
+      {artikel.length ? <ArtikelListe artikel={artikel} gross={false} /> : <p class="leise">Hierzu gibt es noch keinen Beitrag. <a href="/magazin/">Alle Beiträge</a></p>}
+    </div>
+  </section>
+</Basis>

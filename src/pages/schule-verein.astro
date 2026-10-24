@@ -1,0 +1,71 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Foto from '../components/Foto.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Icon from '../components/Icon.astro';
+import { inhalt } from '../inhalt';
+const N = inhalt.name;
+const C = inhalt.befehl;
+---
+<Basis titel="Für Schulen und Vereine" beschreibung={`${N} selbst hosten, kostenlos: Wissen von Schule oder Verein mit Fundstelle, ohne Konto bei einem KI-Konzern. Damit Übergaben im Ehrenamt nicht bei null anfangen.`}>
+  <Seitenkopf titel={`Damit der nächste Kassenwart weiß, <span class="mk">was der letzte wusste</span>.`} ort="Schulen und Vereine">
+    <p>In Vereinen und Schulen wechseln die Leute öfter als das Wissen. {N} hält fest, wie die Hallenbelegung läuft, wer den Schlüssel hat und warum der Zuschuss im März beantragt wird. Selbst gehostet ist es kostenlos.</p>
+  </Seitenkopf>
+
+  <div class="rahmen">
+    <section class="block" data-zeige>
+      <h2>Was hineingehört</h2>
+      <div class="prosa">
+        <ul>
+          <li>Satzung, Beschlüsse und Protokolle, mit Fundstelle durchsuchbar</li>
+          <li>Abläufe: Hallenbelegung, Zuschussanträge, Veranstaltungen, Fahrdienste</li>
+          <li>Fristen mit Gültigkeit: Meldetermine, Versicherungen, Beiträge</li>
+          <li>Für Schulen: Abläufe im Sekretariat, Konferenzbeschlüsse, Einarbeitung neuer Kolleginnen und Kollegen</li>
+        </ul>
+        <p>Was nicht hineingehört, schreibt ihr selbst in die Regeldatei, zum Beispiel Schülerdaten oder Gesundheitsangaben. Fragt jemand danach, verweist {N} auf die zuständige Stelle.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Die Übergabe<small><span class="stand heute">läuft heute</span></small></h2>
+      <div class="prosa">
+        <p>Bei einer Wahl wechselt der Vorstand, das Wissen bleibt im Ordner. Jeder Artikel hat eine verantwortliche Person und einen Prüftermin, und {N} zeigt, welche Artikel fällig sind. Wer neu im Amt ist, fragt den Ordner statt die Vorgängerin. Ein Übergabepaket auf Knopfdruck ist Fahrplan.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Selbst hosten</h2>
+      <div class="prosa">
+        <p>Ein Linux-Server oder ein NAS mit Docker reicht, etwa der Rechner, auf dem schon die Vereinscloud läuft. Kein Konto beim Hersteller, keine Telemetrie. Mit einem lokalen Modell über Ollama verlässt keine Frage das Haus.</p>
+<pre class="code" tabindex="0"><span class="k">$</span> git clone {inhalt.repoUrl ?? inhalt.repo} && cd {inhalt.cli}
+<span class="k">$</span> docker build -f deploy/Dockerfile -t {inhalt.image} .
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
+    -v "$PWD/daten:/daten" {inhalt.image}</pre>
+        <p class="klein" style="margin-top:12px">Ein fertiges Image gibt es in der Vorschau noch nicht, gebaut wird aus dem Quellcode.</p>
+        <p>Wer keinen Server hat, fragt im eigenen Umfeld: Fast jeder Verein hat jemanden, der so etwas betreut. Bei der Einrichtung helfen wir auch.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Datenschutz</h2>
+      <div class="prosa">
+        <ul>
+          <li>Alle Daten liegen auf eurem Gerät oder Server, als lesbare Textdateien.</li>
+          <li>Rechte je Datei: nur ich, ein Team (zum Beispiel der Vorstand) oder alle.</li>
+          <li>Endgültiges Löschen nach Art. 17 DSGVO entfernt eine Datei auch aus dem Verlauf.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="band kante">
+    <Foto name="sternwarte" form="voll" fokus="50% 40%" alt="Blick nach oben in die Holzkuppel einer Sternwarte, durch den offenen Spalt der Nachthimmel, davor das Fernrohr." ort="Kuppel einer Sternwarte bei einer Führung" />
+  </section>
+
+  <section class="schluss">
+    <div class="rahmen zeile">
+      <div><h2>Kostenlos, wenn ihr es selbst betreibt.</h2><p class="lead" style="margin-top:20px">Der Quellcode ist offen. Ihr zahlt nur, wenn ihr Hilfe wollt.</p></div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center"><a class="knopf haupt" href="/open-source/">Zum Quellcode <Icon name="pfeil" /></a><a class="pfeil" href="/start/#lokal">Installationsbefehl</a></div>
+    </div>
+  </section>
+</Basis>

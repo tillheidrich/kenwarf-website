@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+interface Props { titel?: string; text?: string; }
+const { titel = 'Fang heute Nacht an.', text = 'Zwei Wochen testen, eigene KI anbinden oder erste Dateien hochladen. Am Ende nimmst du alles mit, was du hineingesteckt hast.' } = Astro.props;
+---
+<section class="schluss kante">
+  <div class="rahmen zeile">
+    <div>
+      <h2 set:html={titel} />
+      <p class="lead" style="margin-top:20px">{text}</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center">
+      <a class="knopf haupt" href="/start/">Start in 5 Minuten <Icon name="pfeil" /></a>
+      <a class="pfeil" href="/so-funktionierts/">Erst verstehen</a>
+    </div>
+  </div>
+</section>

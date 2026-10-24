@@ -1,0 +1,56 @@
+---
+// Sechs Ordnerrücken: Der Ordner wird mit jeder Stufe dicker. Klick zeigt, was die Stufe bringt.
+import { stufen, standText } from '../inhalt';
+interface Props { voll?: boolean; }
+const { voll = false } = Astro.props;
+---
+<div data-regal>
+  <div class="regal" role="tablist" aria-label="Sechs Stufen">
+    {stufen.map((s, i) => (
+      <button class="ruecken" type="button" role="tab" id={`st-${i}`} aria-controls={`sp-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} style={`--d:${s.dicke}`}>
+        <span class="schild"><b>{s.kurz}</b><span>{s.name}</span></span>
+        <span class="stand">{standText[s.stand]}</span>
+        <span class="loch" aria-hidden="true"></span>
+      </button>
+    ))}
+  </div>
+  {stufen.map((s, i) => (
+    <div class="stufe-detail" role="tabpanel" id={`sp-${i}`} aria-labelledby={`st-${i}`} data-stufe>
+      <div>
+        <p class="zwisch">{s.zeit} · <span class={`stand ${s.stand}`}>{standText[s.stand]}</span></p>
+        <h3>{s.name}</h3>
+        <p class="lead" style="font-size:1.12rem">{s.satz} {s.wert}</p>
+      </div>
+      <div>
+        <p class="zwisch">Läuft heute</p>
+        <ul class="liste">{s.heute.map((h) => <li>{h}</li>)}</ul>
+      </div>
+      <div>
+        <p class="zwisch">Fahrplan</p>
+        <ul class="liste fp">{s.fahrplan.map((h) => <li>{h}</li>)}</ul>
+        {voll && <><p class="zwisch" style="margin-top:20px">Selbst messen</p><p class="klein">{s.messen}</p></>}
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-regal]').forEach((r) => {
+    const tabs = [...r.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...r.querySelectorAll<HTMLElement>('[data-stufe]')];
+    const zeige = (i: number, fokus = false) => {
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach((p, j) => (p.hidden = i !== j));
+      if (fokus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => zeige(i));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); zeige((i + 1) % n, true); }
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); zeige((i - 1 + n) % n, true); }
+      });
+    });
+    zeige(0);
+  });
+</script>

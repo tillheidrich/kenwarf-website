@@ -1,0 +1,31 @@
+---
+// Fotos von Till Heidrich. Quellen liegen aufbereitet (ohne EXIF/GPS) in src/fotos/,
+// Astro erzeugt AVIF und WebP in mehreren Breiten. Nie von tillheidrich.de einbinden.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const alle = import.meta.glob<{ default: ImageMetadata }>('../fotos/*.jpg', { eager: true });
+
+interface Props {
+  name: string;
+  alt: string;
+  /** Bildunterschrift: Ort, Zeit. Ohne Deutung. */
+  ort?: string;
+  /** voll = über die ganze Breite; quer, hoch, frei = im Raster */
+  form?: 'voll' | 'quer' | 'hoch' | 'frei';
+  laden?: 'lazy' | 'eager';
+  sizes?: string;
+  /** Bildausschnitt bei object-fit, z. B. "50% 70%" */
+  fokus?: string;
+  klasse?: string;
+}
+const { name, alt, ort, form = 'quer', laden = 'lazy', sizes, fokus = '50% 50%', klasse = '' } = Astro.props;
+const bild = alle[`../fotos/${name}.jpg`]?.default;
+if (!bild) throw new Error(`Foto fehlt: ${name}`);
+const breiten = [480, 828, 1200, 1680, 2400].filter((b) => b <= bild.width);
+const standardSizes = form === 'voll' ? '100vw' : form === 'hoch' ? '(min-width: 900px) 40vw, 100vw' : '(min-width: 900px) 55vw, 100vw';
+---
+<figure class={`foto foto-${form} ${klasse}`} data-zeige style={`--fokus:${fokus}`}>
+  <Picture src={bild} alt={alt} formats={['avif', 'webp']} widths={breiten} sizes={sizes ?? standardSizes} loading={laden} decoding="async" quality={form === 'voll' ? 62 : 68} />
+  {ort && <figcaption><span class="foto-ort">{ort}</span><slot /></figcaption>}
+</figure>

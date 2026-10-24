@@ -1,0 +1,21 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+import ArtikelListe from '../../components/ArtikelListe.astro';
+import MagazinFilter from '../../components/MagazinFilter.astro';
+import { alleArtikel } from '../../magazin';
+import { inhalt } from '../../inhalt';
+const artikel = await alleArtikel();
+---
+<Basis titel="Magazin" beschreibung={`Beiträge zu Betriebswissen, belegten KI-Antworten, Export und Datenschutz. Jede Zahl mit Quelle. Von der Redaktion von ${inhalt.name}.`}>
+  <Seitenkopf titel={`Was dein Wissen wert ist, <span class="mk">mit Quelle</span>.`} ort="Magazin">
+    <p>Beiträge zu Betriebswissen, belegten KI-Antworten, Export und Verschwiegenheit. Jede Zahl hat eine Quelle, jede Quelle eine Einordnung. Kein Tracking, keine Kommentare, ein <a href="/magazin/rss.xml">RSS-Feed</a>.</p>
+  </Seitenkopf>
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <MagazinFilter />
+      <h2 class="sr">Alle Beiträge</h2>
+      <ArtikelListe artikel={artikel} />
+    </div>
+  </section>
+</Basis>

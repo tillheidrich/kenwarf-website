@@ -1,0 +1,88 @@
+---
+// Konkrete Demo: echte Ausgabe der Engine (werkzeug/demo-daten.mjs → src/demo.json).
+// Ohne JavaScript stehen alle Antworten untereinander; mit JavaScript als Reiter.
+import demo from '../demo.json';
+import { inhalt } from '../inhalt';
+
+const statusText: Record<string, string> = {
+  beantwortet: 'Beantwortet, mit Beleg',
+  steht_nicht_drin: 'Steht nicht drin',
+  gehoert_nicht_hierher: 'Gehört nicht hierher',
+};
+const statusKlasse: Record<string, string> = { beantwortet: 'ok', steht_nicht_drin: 'nein', gehoert_nicht_hierher: 'regel' };
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const markiere = (text: string, zitat: string, treffer: boolean) => {
+  const t = esc(text);
+  if (!treffer) return t;
+  const z = esc(zitat);
+  const i = t.indexOf(z);
+  if (i < 0) return t;
+  return `${t.slice(0, i)}<mark class="zitat-mk">${z}</mark>${t.slice(i + z.length)}`;
+};
+const kurz = (f: string) => f.replace(/\?$/, '?');
+---
+<div class="demo" data-demo>
+  <div class="demo-kopf">
+    <b>Fragen</b>
+    <span>Tischlerei Wendt · erfundene Beispieldaten</span>
+  </div>
+  <div class="demo-fragen" role="tablist" aria-label="Beispielfragen" hidden data-reiter>
+    {demo.fragen.map((f, i) => (
+      <button type="button" role="tab" id={`df-${i}`} aria-controls={`dp-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{kurz(f.frage)}</button>
+    ))}
+  </div>
+  {demo.fragen.map((f, i) => (
+    <div class="demo-panel" role="tabpanel" id={`dp-${i}`} aria-labelledby={`df-${i}`} data-panel>
+      <p class="demo-frage">{f.frage}</p>
+      <span class={`demo-status ${statusKlasse[f.status]}`}>{statusText[f.status]}</span>
+      {f.punkte.length > 0 && (
+        <ul class="demo-punkte">
+          {f.punkte.map((p) => (
+            <li><span>{p.text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')}</span><span>{p.belege.map((b) => <span class="fn" aria-label={`Beleg ${b}`}>{b}</span>)}</span></li>
+          ))}
+        </ul>
+      )}
+      {f.status !== 'beantwortet' && <p class="demo-hinweis">{f.status === 'steht_nicht_drin' ? `${inhalt.name} rät nicht. In den Unterlagen steht dazu nichts, also sagt es genau das.` : 'Lohndaten gehören in die Lohnbuchhaltung. Diese Regel hat der Betrieb selbst in den Ordner geschrieben.'}</p>}
+      {f.belege.map((b, j) => (
+        <div class="akte">
+          <div class="akte-kopf"><span>{f.status === 'beantwortet' ? `[${j + 1}] ` : ''}{b.quelle}</span><span>Zeile {b.zeilen[0] === b.zeilen[1] ? b.zeilen[0] : `${b.zeilen[0]} bis ${b.zeilen[1]}`}</span></div>
+          <div class="akte-zeilen">
+            {b.umgebung.filter((u) => u.text.trim() !== '' || u.treffer).map((u) => (
+              <div class={u.treffer ? 'treffer' : ''}><span class="nr">{u.nr}</span><span class="t" set:html={markiere(u.text, b.zitat, u.treffer) || ' '} /></div>
+            ))}
+          </div>
+          <div class="akte-pruef">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l4.5 4.5L19.5 6.5" /></svg>
+            <span>{b.geprueft ? 'Zitat geprüft: steht wörtlich in der Datei.' : 'Zitat nicht gefunden, Beleg verworfen.'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  ))}
+  <p class="demo-fuss">Echte Ausgabe der Engine vom {demo.erzeugt}, Testmodus ohne Sprachmodell. Mit angebundener KI formuliert {inhalt.name} freier. Die Zitatprüfung bleibt dieselbe: Was nicht wörtlich in der Datei steht, fliegt raus.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-demo]').forEach((demo) => {
+    const reiter = demo.querySelector<HTMLElement>('[data-reiter]');
+    const tabs = [...demo.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...demo.querySelectorAll<HTMLElement>('[data-panel]')];
+    if (!reiter || !tabs.length) return;
+    reiter.hidden = false;
+    const zeige = (i: number, fokus = false) => {
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach((p, j) => { p.hidden = i !== j; p.removeAttribute('data-neu'); });
+      void panels[i].offsetWidth;
+      panels[i].setAttribute('data-neu', '');
+      if (fokus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => zeige(i));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') zeige((i + 1) % tabs.length, true);
+        if (e.key === 'ArrowLeft') zeige((i - 1 + tabs.length) % tabs.length, true);
+      });
+    });
+    zeige(0);
+  });
+</script>

@@ -1,0 +1,82 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Foto from '../components/Foto.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Icon from '../components/Icon.astro';
+import { inhalt, mail } from '../inhalt';
+const N = inhalt.name;
+const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir möchten ein Konzept, wie wir ein lokales oder europäisches Modell mit ${N} nutzen können.\n\nKanzlei / Fachrichtung:\nAnzahl Berufsträger und Mitarbeitende:\nVorhandene IT (eigener Server, Systemhaus, Cloud):\n\nMit freundlichen Grüßen`);
+---
+<Basis titel="Für Kanzleien" beschreibung={`${N} für Rechtsanwalts- und Steuerkanzleien: KI lokal oder bei einem europäischen Anbieter, Antworten mit Fundstelle, Verschwiegenheit nach § 203 StGB, § 43e BRAO und § 62a StBerG sachlich eingeordnet.`}>
+  <Seitenkopf titel={`Eine KI für die Kanzlei, die <span class="mk">im Haus</span> bleiben kann.`} ort="Kanzleien">
+    <p>Sie entscheiden, wo das Modell läuft: auf einem Rechner in Ihrer Kanzlei oder bei einem europäischen Anbieter mit Auftragsverarbeitungsvertrag. {N} verbindet es mit dem Wissen Ihrer Kanzlei und zeigt zu jeder Antwort die Fundstelle.</p>
+  </Seitenkopf>
+
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <div class="kopfzeile"><h2>Drei Aufbauten</h2><p class="lead">Alle drei nutzen dieselbe Software. Welcher passt, hängt davon ab, was Ihre Kanzlei herausgeben möchte.</p></div>
+      <table class="wege" data-zeige>
+        <thead><tr><th scope="col">Aufbau</th><th scope="col">Wo {N} läuft</th><th scope="col">Wo das Modell läuft</th><th scope="col">Was das Haus verlässt</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Vollständig lokal</th><td data-l={`${N}`}>Server in der Kanzlei</td><td data-l="Modell">Ollama oder vLLM auf eigener Hardware</td><td data-l="Verlässt das Haus">Nichts</td></tr>
+          <tr><th scope="row">Europäisches Modell</th><td data-l={`${N}`}>Server in der Kanzlei oder eigene EU-Cloud</td><td data-l="Modell">EU-Anbieter mit AV-Vertrag, etwa Mistral, IONOS oder STACKIT</td><td data-l="Verlässt das Haus">Die Textabschnitte einer Frage, an diesen Anbieter</td></tr>
+          <tr><th scope="row">Managed<small>{inhalt.managedStatus}</small></th><td data-l={`${N}`}>Eigene Instanz bei einem EU-Hoster, betrieben von {inhalt.anbieter}</td><td data-l="Modell">Lokal beim Hoster oder EU-Anbieter</td><td data-l="Verlässt das Haus">Die Inhalte, mit Verschwiegenheits- und AV-Vertrag</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="rahmen">
+    <section class="block" data-zeige>
+      <h2>Berufsrecht, sachlich<small>Keine Rechtsberatung. Bitte prüfen Sie Ihre Konstellation selbst oder mit Ihrer Kammer.</small></h2>
+      <div class="prosa">
+        <p><span class="para">§ 203 StGB</span> schützt Mandatsgeheimnisse. Mitwirkende Personen, etwa IT-Dienstleister, dürfen Geheimnisse erfahren, soweit es für ihre Tätigkeit erforderlich ist. Die Kanzlei muss sie zur Geheimhaltung verpflichten.</p>
+        <p><span class="para">§ 43e BRAO</span> regelt, wann Anwältinnen und Anwälte Dienstleistern Zugang geben dürfen: sorgfältige Auswahl, Vertrag in Textform, Verpflichtung zur Verschwiegenheit mit Belehrung über die strafrechtlichen Folgen, Zugang nur so weit wie nötig. Bei Dienstleistungen im Ausland muss der Geheimnisschutz vergleichbar sein.</p>
+        <p><span class="para">§ 62a StBerG</span> enthält die entsprechende Regel für Steuerberaterinnen und Steuerberater.</p>
+        <h3>Was das für {N} heißt</h3>
+        <ul>
+          <li>Vollständig lokal bekommt kein Dienstleister Zugang zu Inhalten. Das Modell sieht nur, was auf Ihrem Server liegt.</li>
+          <li>Ein europäischer Modellanbieter ist Dienstleister im Sinne dieser Regeln. Prüfen Sie seine Bedingungen zu Speicherung und Training, bevor Mandatsbezug ins Spiel kommt.</li>
+          <li>Richtet {inhalt.anbieter} {N} ein oder pflegt es, gibt es vorab eine Verschwiegenheitsvereinbarung in Textform mit Belehrung nach § 203 StGB und einen AV-Vertrag nach Art. 28 DSGVO. Zugang nur über Ihr Konto und nur so weit, wie es die Aufgabe verlangt.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Womit Sie anfangen</h2>
+      <div class="prosa">
+        <p>Mit der Kanzleiorganisation, nicht mit Mandatsakten. Dort liegt viel Wissen, das bisher in Köpfen und alten Mails steckt:</p>
+        <ul>
+          <li>Kanzleihandbuch, Abläufe, Zuständigkeiten und Vertretungen</li>
+          <li>Fristenregeln und Prüfroutinen</li>
+          <li>Vorlagen und Textbausteine, mit Stand und Verantwortlichem</li>
+          <li>Einarbeitung neuer Mitarbeitender</li>
+        </ul>
+        <p>In der Regeldatei „Was nie hineinkommt“ legen Sie fest, was {N} ablehnt, etwa Mandantennamen oder Aktenzeichen. Fragt jemand danach, antwortet {N} mit dem Hinweis auf die zuständige Fachsoftware.</p>
+      </div>
+    </section>
+
+    <section class="block" data-zeige>
+      <h2>Was Sie vorher prüfen können</h2>
+      <div class="prosa">
+        <ul>
+          <li>Jede Antwort zeigt Datei, Abschnitt und Zeile. Das Zitat wird maschinell gegen die Datei geprüft.</li>
+          <li>Jede Änderung am Wissen ist ein Eintrag im Verlauf, mit Name, Datum und Grund.</li>
+          <li>Die Anzeige „Wohin gehen meine Daten?“ nennt Anbieter, Endpunkt und Region des Modells.</li>
+          <li>Der Export enthält alles, mit Verlauf. Sie sind an niemanden gebunden, auch nicht an uns.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="band kante">
+    <Foto name="fenster-sunne" form="voll" fokus="50% 45%" alt="Blick aus einem dunklen Raum durch ein altes Sprossenfenster ins Grüne." ort="Altes Haus bei Sunne, Schweden" />
+  </section>
+
+  <section class="schluss">
+    <div class="rahmen zeile">
+      <div><h2>Ein Konzept für Ihre Kanzlei.</h2><p class="lead" style="margin-top:20px">Aufbau, Datenfluss, Verträge und die ersten Inhalte, passend zu Ihrer IT. Lokal oder mit europäischem Modell.</p></div>
+      <div><a class="knopf haupt" href={anfrage}>Konzept anfordern <Icon name="pfeil" /></a></div>
+    </div>
+  </section>
+</Basis>

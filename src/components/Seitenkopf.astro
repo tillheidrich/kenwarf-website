@@ -1,0 +1,11 @@
+---
+interface Props { titel: string; ort: string; }
+const { titel, ort } = Astro.props;
+---
+<section class="seitenkopf">
+  <div class="rahmen">
+    <p class="ort"><a href="/">Start</a> / {ort}</p>
+    <h1 set:html={titel} />
+    <div class="lead"><slot /></div>
+  </div>
+</section>

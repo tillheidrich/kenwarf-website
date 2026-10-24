@@ -1,0 +1,195 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Foto from '../components/Foto.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Bild from '../components/Bild.astro';
+import Icon from '../components/Icon.astro';
+import { inhalt, testphaseHref } from '../inhalt';
+const N = inhalt.name;
+const C = inhalt.befehl;
+const ENV = inhalt.datenVariable;
+const R = inhalt.repoUrl ?? inhalt.repo;
+const I = inhalt.image;
+---
+<Basis titel="Start in 5 Minuten" beschreibung={`${N} starten: ${inhalt.testTage} Tage als Managed-Dienst testen, in der eigenen EU-Cloud oder lokal betreiben. Eigene KI per MCP anbinden oder erste Dateien hochladen.`}>
+  <Seitenkopf titel={`Nachts um drei angefangen. <span class="mk">Fünf Minuten</span> später die erste Antwort.`} ort="Start in 5 Minuten">
+    <p>Drei Wege, dieselbe Software. Du kannst später wechseln, denn der Umzug ist Export und Import.</p>
+  </Seitenkopf>
+
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <div class="wegwahl" data-zeige>
+        <section class="erst">
+          <span class="tag">Zum Testen · {inhalt.managedStatus}</span>
+          <h2>Managed, {inhalt.testTage} Tage testen</h2>
+          <p class="leise">Wir betreiben {N} für dich. Du legst los, ohne einen Server anzufassen.</p>
+          <ul>
+            <li><Icon name="haken" /><span>Eigene Instanz nur für deinen Betrieb, bei einem Hoster in der EU</span></li>
+            <li><Icon name="haken" /><span>Eigene KI anbinden oder erste Dateien hochladen</span></li>
+            <li><Icon name="haken" /><span>Am Ende: weitermachen, alles exportieren oder löschen lassen</span></li>
+            <li><Icon name="haken" /><span>Später Umzug in die eigene Cloud ohne Datenverlust</span></li>
+          </ul>
+          <a class="knopf haupt" href={testphaseHref} style="background:var(--blatt)">Testphase starten <Icon name="pfeil" /></a>
+          <p class="klein" style="margin-top:14px">{inhalt.checkoutUrl ? 'Der Bezahlvorgang läuft über Mollie.' : 'Der Bezahlvorgang ist noch nicht freigeschaltet. Bis dahin öffnet der Knopf eine vorbereitete Mail.'}</p>
+        </section>
+        <section>
+          <span class="tag leise">Für dein Systemhaus</span>
+          <h2>Eigene EU-Cloud</h2>
+          <p class="leise">Dein Server, dein Vertrag mit dem Hoster. Ein Container, ein Datenordner.</p>
+          <ul>
+            <li><Icon name="haken" /><span>Hetzner, IONOS, STACKIT oder jeder Linux-Server mit Docker</span></li>
+            <li><Icon name="haken" /><span>Wir sehen deine Daten nicht</span></li>
+            <li><Icon name="haken" /><span>Einrichtung durch uns auf Wunsch</span></li>
+          </ul>
+          <a class="knopf neben" href="#eigene-cloud">Zur Anleitung</a>
+        </section>
+        <section>
+          <span class="tag leise">Für alle, die nichts herausgeben</span>
+          <h2>Lokal</h2>
+          <p class="leise">Auf dem eigenen Rechner, NAS oder Server. Mit lokalem Modell verlässt nichts das Haus.</p>
+          <ul>
+            <li><Icon name="haken" /><span>Ein Befehl mit Docker</span></li>
+            <li><Icon name="haken" /><span>KI lokal über Ollama</span></li>
+            <li><Icon name="haken" /><span>Kostenlos{inhalt.modell === 'opensource' ? ', Quellcode offen' : ''}</span></li>
+          </ul>
+          <a class="knopf neben" href="#lokal">Zum Befehl</a>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <Foto name="strand-daenemark-handy" form="voll" fokus="40% 62%" alt="Eine Hand hält ein Smartphone vor einen Strand bei Sonnenuntergang, auf dem Bildschirm dasselbe Licht." ort="Strand in Dänemark, 30. Oktober 2019" />
+  </section>
+
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <div class="kopfzeile">
+        <h2>Die fünf Minuten</h2>
+        <p class="lead">So läuft der Managed-Weg ab. Ehrlich gesagt: Der Startassistent, der dich durch diese Schritte führt, ist noch Fahrplan. Die Schritte selbst funktionieren heute.</p>
+      </div>
+      <ol class="zeitstrahl" data-zeige>
+        <li><b>Minute 0</b><span>Testphase starten, Betriebsname eintragen.</span></li>
+        <li><b>Minute 1</b><span>Deine Instanz läuft, du meldest dich an.</span></li>
+        <li><b>Minute 2</b><span>KI anbinden oder drei Dateien hineinziehen.</span></li>
+        <li><b>Minute 4</b><span>Die erste Frage stellen.</span></li>
+        <li class="jetzt"><b>Minute 5</b><span>Antwort mit Fundstelle. Oder: „Steht nicht drin.“</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="abschnitt eng kante">
+    <div class="rahmen zwei schief">
+      <div class="prosa" data-zeige>
+        <h2>{inhalt.testTage} Tage, ohne Tricks</h2>
+        <p>Wer zwei Wochen mit dem eigenen Wissen gearbeitet hat, weiß, ob es sich lohnt. Dafür braucht es keine Druckmittel.</p>
+        <ul>
+          <li>Die Erinnerung kommt vor dem Ende, nicht danach.</li>
+          <li>Der Export ist in der Testphase genauso vollständig wie danach.</li>
+          <li>Löschen ist ein Knopf, kein Kündigungsformular.</li>
+          <li>Was {N} in den zwei Wochen gezählt hat (Fragen mit Beleg, Fragen ohne Antwort), siehst nur du.</li>
+        </ul>
+        <p class="klein">Fristen und Ablauf im Detail werden vor dem Start des Managed-Dienstes festgelegt.</p>
+      </div>
+      <ol class="zeitstrahl" data-zeige style="align-self:center">
+        <li><b>Tag 1</b><span>Erste Fragen, erste Belege.</span></li>
+        <li><b>Tag 7</b><span>Zwischenstand, nur für dich.</span></li>
+        <li><b>Tag 12</b><span>Erinnerung per Mail.</span></li>
+        <li class="jetzt"><b>Tag {inhalt.testTage}</b><span>Weiter, Export oder Löschung.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="abschnitt kante" id="ki">
+    <div class="rahmen zwei">
+      <div class="prosa" data-zeige>
+        <h2>Eigene KI anbinden</h2>
+        <p>Zwei Richtungen, beide gehen: {N} nutzt ein Modell, um zu antworten. Und deine KI-Werkzeuge nutzen {N}, um nachzuschlagen.</p>
+        <p><b>Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen.</b></p>
+        <h3>Ein Modell für {N}</h3>
+        <ul>
+          <li>Lokal: Ollama, llama.cpp oder vLLM auf eigener Hardware</li>
+          <li>EU-Anbieter mit OpenAI-kompatibler Schnittstelle, zum Beispiel Mistral, IONOS AI Model Hub, STACKIT, Scaleway oder OVHcloud</li>
+          <li>Große Anbieter: Claude direkt über Anthropic, ChatGPT/Codex über OpenAI, Gemini über die OpenAI-kompatible Schnittstelle von Google</li>
+        </ul>
+        <p>Unter „Wohin gehen meine Daten?“ zeigt {N}, welcher Anbieter mit welchem Endpunkt aktiv ist.</p>
+        <h3>{N} für deine KI-Werkzeuge</h3>
+        <p>Claude, ChatGPT, Cursor oder ein eigener Agent verbinden sich über MCP. Sie dürfen suchen, lesen und fragen. Schreiben dürfen sie nicht, nur Vorschläge in den Eingang legen. Heute mit einem Schlüssel je Person; die Anmeldung per OAuth ohne Handarbeit ist Fahrplan.</p>
+      </div>
+      <div data-zeige>
+        <pre class="code" tabindex="0" aria-label="MCP-Konfiguration">{`{
+  "mcpServers": {
+    "${C}": {
+      "type": "http",
+      "url": "https://dein-betrieb.example/mcp",
+      "headers": {
+        "Authorization": "Bearer <dein-schlüssel>"
+      }
+    }
+  }
+}`}</pre>
+        <div style="margin-top:28px"><Bild src="/produkt/ki-ausschnitt.webp" alt="Einstellungen, KI-Anbieter: Auswahl zwischen Testmodus, lokalem Modell, OpenAI-kompatiblem EU-Anbieter und Anthropic." breite={1158} hoehe={510}><b>KI-Anbieter.</b> Ohne Einstellung läuft der Testmodus ohne Modell, wie in der Demo auf der Startseite.</Bild></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt eng kante">
+    <div class="rahmen zwei schief">
+      <div class="prosa" data-zeige>
+        <h2>Oder Kontext hochladen</h2>
+        <p>Keine KI zur Hand? Dann fang mit Dateien an. PDF, Word, Markdown, Text, Webseiten. Ganze Wissenssammlungen kommen per Import:</p>
+        <ul>
+          <li>Obsidian, Notion, Outline, Confluence, Markdown-Ordner</li>
+          <li>Das offene Format OKF</li>
+          <li>Exporte aus ChatGPT und Claude sind Fahrplan</li>
+        </ul>
+        <p>Importe landen als Quellen und Vorschläge im Eingang. Ins Wissen kommt erst, was du freigibst.</p>
+      </div>
+      <Bild src="/produkt/fragen-ausschnitt.webp" alt="Die Seite Fragen mit einer Antwort zu einem Kratzer an einer Schranktür, vier Punkten mit Belegnummern und rechts den Fundstellen mit markierten Zitaten." breite={1158} hoehe={1060}><b>Fragen.</b> Rechts die Fundstellen, das Zitat markiert, ein Klick öffnet die Datei.</Bild>
+    </div>
+  </section>
+
+  <section class="abschnitt kante" id="eigene-cloud">
+    <div class="rahmen zwei">
+      <div class="prosa">
+        <h2>Eigene EU-Cloud</h2>
+        <p>Ein Linux-Server mit Docker reicht. Der Datenordner ist ein normales Verzeichnis, das du wie jedes andere sicherst.</p>
+      </div>
+      <ol class="schritte">
+        <li><div><h3>Server bestellen</h3><p>Bei einem Hoster in der EU, mit Docker. Für den Anfang genügt ein kleiner Server.</p></div></li>
+        <li><div><h3>Container starten</h3>
+<pre class="code" tabindex="0"><span class="k">$</span> git clone {R} && cd {inhalt.cli}
+<span class="k">$</span> docker build -f deploy/Dockerfile -t {I} .
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
+    -v /srv/{inhalt.cli}-daten:/daten {I}</pre></div></li>
+        <li><div><h3>Erstes Passwort holen</h3><p>Beim ersten Start legt der Container den Admin an und schreibt das Passwort einmal ins Protokoll.</p>
+<pre class="code" tabindex="0"><span class="k">$</span> docker logs {inhalt.cli}</pre></div></li>
+        <li><div><h3>HTTPS davor</h3><p>Hinter einen Reverse Proxy wie Caddy, Traefik oder Coolify. Dann im Browser öffnen und anmelden.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="abschnitt kante" id="lokal">
+    <div class="rahmen zwei">
+      <div class="prosa">
+        <h2>Lokal</h2>
+        <p>Auf dem eigenen Rechner oder NAS. Zusammen mit Ollama verlässt keine Anfrage das Gerät.</p>
+        <p class="klein">Ein fertiges Image gibt es in der Vorschau noch nicht. Der Bau aus dem Quellcode dauert beim ersten Mal ein paar Minuten. Befehle und Variablen heißen im Code noch <code>{C}</code>.</p>
+      </div>
+      <div>
+<pre class="code" tabindex="0"><span class="k">$</span> git clone {R} && cd {inhalt.cli}
+<span class="k">$</span> docker build -f deploy/Dockerfile -t {I} .
+<span class="k">$</span> docker run -d --name {inhalt.cli} -p 7480:7480 \
+    -v "$PWD/daten:/daten" {I}
+<span class="k"># dann im Browser:</span> <span class="m">http://localhost:7480</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="schluss kante">
+    <div class="rahmen zeile">
+      <h2>Zwei Wochen. Dann weißt du es.</h2>
+      <div><a class="knopf haupt" href={testphaseHref}>Testphase starten <Icon name="pfeil" /></a></div>
+    </div>
+  </section>
+</Basis>

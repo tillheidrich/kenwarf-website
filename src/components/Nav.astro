@@ -1,0 +1,28 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { navigation, ohneBasis } from '../inhalt';
+const aktuell = ohneBasis(Astro.url.pathname);
+---
+<header class="kopf">
+  <div class="rahmen">
+    <Logo />
+    <nav class="voll" aria-label="Hauptnavigation">
+      <ul>
+        {navigation.slice(0, 1).concat(navigation.slice(2)).map((n) => (
+          <li><a href={n.href} aria-current={aktuell === n.href || (n.href === '/magazin/' && aktuell.startsWith('/magazin/')) ? 'page' : undefined}>{n.text}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="knopf haupt kopf-cta" href="/start/">Start in 5 Minuten</a>
+    <details class="menue">
+      <summary><Icon name="menue" /><span>Menü</span></summary>
+      <div class="platte">
+        <nav aria-label="Hauptnavigation mobil">
+          {navigation.map((n) => <a href={n.href} aria-current={aktuell === n.href || (n.href === '/magazin/' && aktuell.startsWith('/magazin/')) ? 'page' : undefined}>{n.text}</a>)}
+          <a class="knopf haupt" href="/start/">Start in 5 Minuten</a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>

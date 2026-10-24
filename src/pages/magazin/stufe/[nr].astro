@@ -1,0 +1,24 @@
+---
+import Basis from '../../../layouts/Basis.astro';
+import Seitenkopf from '../../../components/Seitenkopf.astro';
+import ArtikelListe from '../../../components/ArtikelListe.astro';
+import MagazinFilter from '../../../components/MagazinFilter.astro';
+import { alleArtikel } from '../../../magazin';
+import { stufen } from '../../../inhalt';
+export function getStaticPaths() {
+  return stufen.map((_, i) => ({ params: { nr: String(i + 1) } }));
+}
+const nr = Number(Astro.params.nr);
+const s = stufen[nr - 1];
+const artikel = (await alleArtikel()).filter((a) => a.data.stufen.includes(nr));
+---
+<Basis titel={`Magazin: Stufe ${nr}, ${s.name}`} beschreibung={`Beiträge zur Stufe ${nr} „${s.name}“: ${s.satz}`}>
+  <Seitenkopf titel={`Stufe ${nr}: ${s.name}`} ort="Magazin"><p>{s.zeit}. {s.satz}</p></Seitenkopf>
+  <section class="abschnitt eng">
+    <div class="rahmen">
+      <MagazinFilter aktiv={`stufe-${nr}`} />
+      <h2 class="sr">Beiträge</h2>
+      {artikel.length ? <ArtikelListe artikel={artikel} gross={false} /> : <p class="leise">Zu dieser Stufe gibt es noch keinen Beitrag. <a href="/magazin/">Alle Beiträge</a></p>}
+    </div>
+  </section>
+</Basis>

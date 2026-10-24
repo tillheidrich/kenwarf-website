@@ -1,0 +1,21 @@
+---
+import { zielgruppen } from '../magazin';
+import { stufen } from '../inhalt';
+interface Props { aktiv?: string; }
+const { aktiv = 'alle' } = Astro.props;
+---
+<nav class="magazin-filter" aria-label="Magazin nach Thema">
+  <div>
+    <span class="filter-label">Für</span>
+    <ul role="list">
+      <li><a href="/magazin/" aria-current={aktiv === 'alle' ? 'page' : undefined}>Alle</a></li>
+      {Object.entries(zielgruppen).map(([k, v]) => <li><a href={`/magazin/fuer/${k}/`} aria-current={aktiv === k ? 'page' : undefined}>{v}</a></li>)}
+    </ul>
+  </div>
+  <div>
+    <span class="filter-label">Stufe</span>
+    <ul role="list">
+      {stufen.map((s, i) => <li><a href={`/magazin/stufe/${i + 1}/`} aria-current={aktiv === `stufe-${i + 1}` ? 'page' : undefined}><b>{i + 1}</b> {s.name}</a></li>)}
+    </ul>
+  </div>
+</nav>

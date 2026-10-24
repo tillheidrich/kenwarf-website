@@ -1,0 +1,21 @@
+---
+import Foto from './Foto.astro';
+import { lesezeit, datumLang, datumIso, zielgruppen, stufeKurz, type Artikel } from '../magazin';
+interface Props { artikel: Artikel[]; gross?: boolean; }
+const { artikel, gross = true } = Astro.props;
+---
+<ol class="artikel-liste" role="list">
+  {artikel.map((a, i) => (
+    <li class={i === 0 && gross ? 'erst' : ''}>
+      <a class="artikel-karte" href={`/magazin/${a.id}/`}>
+        <Foto name={a.data.foto} form="quer" fokus={a.data.fokus} alt="" sizes={i === 0 && gross ? '(min-width: 900px) 58vw, 100vw' : '(min-width: 900px) 30vw, 100vw'} />
+        <div class="artikel-karte-text">
+          <p class="artikel-meta"><time datetime={datumIso(a.data.datum)}>{datumLang(a.data.datum)}</time><span>{lesezeit(a.body ?? '')} Min. Lesezeit</span></p>
+          <h3>{a.data.titel}</h3>
+          <p class="artikel-auszug">{a.data.beschreibung}</p>
+          <p class="artikel-tags">{a.data.zielgruppen.map((z) => <span>{zielgruppen[z]}</span>)}{a.data.stufen.map((s) => <span class="stufe">{stufeKurz(s)}</span>)}</p>
+        </div>
+      </a>
+    </li>
+  ))}
+</ol>

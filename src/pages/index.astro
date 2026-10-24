@@ -1,0 +1,156 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Demo from '../components/Demo.astro';
+import Regal from '../components/Regal.astro';
+import Bild from '../components/Bild.astro';
+import Icon from '../components/Icon.astro';
+import Foto from '../components/Foto.astro';
+import Schluss from '../components/Schluss.astro';
+import { inhalt } from '../inhalt';
+const N = inhalt.name;
+const C = inhalt.befehl;
+---
+<Basis start titel={`${N}: Dein Betriebswissen antwortet, mit Fundstelle`} beschreibung={`${N} beantwortet Fragen aus den Unterlagen deines Betriebs nur mit wörtlich geprüftem Zitat. Alles liegt als Textdatei in einem Ordner, den du jederzeit mitnimmst. KI frei wählbar, lokal, in der EU-Cloud oder als Managed-Dienst.`}>
+
+  <section class="held">
+    <div class="rahmen held-raster">
+      <div>
+        <h1>Dein Betriebs&shy;wissen antwortet. <span class="mk" data-zieh>Mit Fundstelle.</span></h1>
+        <p class="lead">{N} liest eure Abläufe, Preisblätter und Notizen. Fragen beantwortet es nur mit einem Zitat, das wörtlich in der Datei steht. Alles liegt als Textdatei in einem Ordner, den du jederzeit mitnimmst, und die KI dahinter suchst du dir aus.</p>
+        <div class="aktionen">
+          <a class="knopf haupt" href="/start/">Zwei Wochen testen <Icon name="pfeil" /></a>
+          <a class="pfeil" href="/so-funktionierts/">Wie das nach drei Monaten aussieht</a>
+        </div>
+        <ul class="fakten">
+          <li><Icon name="haken" /><span>Kein Beleg, keine Antwort. Steht es nicht drin, sagt {N} das.</span></li>
+          <li><Icon name="haken" /><span>Export jederzeit: als ZIP mit Verlauf oder im offenen Format OKF.</span></li>
+          <li><Icon name="haken" /><span>KI nach Wahl. Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen.</span></li>
+          {inhalt.modell === 'opensource' && <li><Icon name="haken" /><span>Quellcode offen, selbst hosten ist kostenlos{inhalt.lizenzEntschieden ? '' : ' (Lizenz vorgesehen: ' + inhalt.lizenzName + ')'}.</span></li>}
+        </ul>
+      </div>
+      <Demo />
+    </div>
+  </section>
+
+  <section class="band">
+    <Foto name="seebruecke-lubmin" form="voll" fokus="50% 62%" alt="Seebrücke am Abend: ein weißes Häuschen mit blauem Dach, daneben eine leuchtende Laterne, der Steg führt geradeaus aufs ruhige Wasser." ort="Seebrücke Lubmin, Greifswalder Bodden" />
+  </section>
+
+  <section class="abschnitt">
+    <div class="rahmen haltung">
+      <div>
+        <blockquote data-zeige>Modelle werden jedes Jahr billiger und austauschbar. Was dein Betrieb weiß, ist es nicht.</blockquote>
+        <p class="leise" style="margin-top:24px;max-width:44ch" data-zeige>Wie ihr kalkuliert, wer über Kulanz entscheidet, warum der Lackraum zehn Minuten nachlüftet: Das steht in keinem Modell. {N} sorgt dafür, dass es aufgeschrieben, belegt und in deiner Hand bleibt.</p>
+      </div>
+      <div data-zeige>
+        <h2 class="sr">Was {N} anders macht</h2>
+        <ul class="gegen">
+          <li><span class="alt">„Die KI kennt jetzt dein Unternehmen.“</span><span>Die KI liest nach. Jede Antwort hat eine Fundstelle mit Datei und Zeile, die du öffnen kannst.</span></li>
+          <li><span class="alt">„Dein zweites Gehirn, im Konto des Anbieters.“</span><span>Ein Ordner mit Textdateien. Bei dir, in deiner EU-Cloud oder bei uns, und jederzeit exportierbar.</span></li>
+          <li><span class="alt">„Einmal einrichten, nie wieder pflegen.“</span><span>Wissen veraltet. {N} meldet abgelaufene Fristen und Fakten, die sich widersprechen.</span></li>
+          <li><span class="alt">„Die KI schreibt dein Wiki.“</span><span>Die KI schlägt vor, ein Mensch gibt frei. Jede Änderung steht mit Name und Grund im Verlauf.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt dunkel" id="stufen">
+    <div class="rahmen">
+      <div class="kopf-mit-foto">
+        <div>
+          <h2>Was dein Kontext wert ist. Am ersten Tag, nach drei Monaten, bei der Übergabe.</h2>
+          <p class="lead">Am ersten Tag beantwortet {N} Fragen. Nach ein paar Wochen weiß es Bescheid, danach bemerkt es Dinge. Je länger ihr pflegt, desto dicker der Ordner. Was heute läuft und was Fahrplan ist, steht jeweils dabei.</p>
+        </div>
+        <Foto name="gewaechshaus-greifswald-gang" form="hoch" fokus="50% 55%" sizes="(min-width: 900px) 30vw, 100vw" alt="Schmaler Gang durch ein Gewächshaus, links und rechts dichte, gepflegte Pflanzen in Beeten, am Ende eine weiße Tür." ort="Gewächshaus, Botanischer Garten Greifswald" />
+      </div>
+      <Regal />
+      <p style="margin-top:48px"><a class="pfeil" href="/so-funktionierts/">Alle sechs Stufen im Detail <Icon name="pfeil" /></a></p>
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <div class="rahmen">
+      <div class="kopfzeile">
+        <h2>Echte Bildschirme. Erfundene Tischlerei.</h2>
+        <p class="lead">Alle Bilder stammen aus der laufenden Weboberfläche mit den Beispieldaten der Tischlerei Wendt. Den Betrieb gibt es nicht, die Software schon.</p>
+      </div>
+      <div class="galerie">
+        <div class="spalte">
+        <Bild src="/produkt/eingang-ausschnitt.webp" alt={`Der Eingang in ${N}: links vier offene Vorschläge, rechts der Vorschlag „Angebot schreiben“ als Vergleich mit gestrichenem und neuem Text, darunter Freigeben, Ändern, Ablehnen.`} breite={1158} hoehe={880}>
+          <b>Eingang.</b> Kai schlägt vor, die Lieferzeit für Beschläge auf vier Wochen zu setzen. Du siehst genau, welche Wörter sich ändern, und entscheidest. Erst dann landet es im Wissen.
+        </Bild>
+        <Bild src="/produkt/fakten-ausschnitt.webp" alt="Die Faktenliste mit Preisen, Fristen und Zuständigkeiten, jeweils mit Gültigkeit und Fundstelle." breite={1170} hoehe={880}>
+          <b>Fakten.</b> Preise, Fristen, Zuständigkeiten mit Gültigkeitsdatum. Läuft etwas ab, steht es auf der Heute-Seite.
+        </Bild>
+        </div>
+        <div class="spalte versatz">
+        <Bild src="/produkt/heute-ausschnitt.webp" alt="Die Seite Heute mit Lesestil-Auswahl und einer Zusammenfassung der offenen Vorschläge und überschrittenen Prüftermine." breite={820} hoehe={1100}>
+          <b>Heute.</b> Was sich getan hat und was auf dich wartet, als Zusammenfassung oder Entscheidungsvorlage.
+        </Bild>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt kante">
+    <div class="rahmen zwei schief">
+      <div data-zeige>
+        <h2>Dein Wissen gehört dir. <span class="mk" data-zieh>Immer.</span></h2>
+        <p class="lead" style="margin-top:24px">Bei den großen KI-Anbietern steckt dein Kontext in deren Konto. Bei {N} ist er ein Ordner mit Markdown-Dateien und git-Verlauf.</p>
+        <div class="text">
+          <p>Du öffnest jede Datei mit jedem Editor, auch ohne {N}. Du exportierst alles als ZIP oder im offenen Format OKF und spielst es woanders wieder ein. Wer beim Managed-Betrieb anfängt, zieht so in die eigene Cloud oder auf den eigenen Server um, ohne etwas zu verlieren.</p>
+          <p>Der Suchindex lässt sich jederzeit aus den Dateien neu bauen. Geht die Datenbank kaputt, ist nichts verloren.</p>
+        </div>
+      </div>
+      <div data-zeige>
+        <pre class="baum" tabindex="0" role="img" aria-label={`Ordnerstruktur des Datenordners ${C}-data mit den Unterordnern quellen, wissen, eingang und briefing`}>{C}-data/
+├── {C}.yaml            <span class="k"># Betrieb, KI-Anbieter, Teams</span>
+├── quellen/            <span class="k"># Rohmaterial, unverändert</span>
+│   └── 2026/
+│       └── <span class="m">preisblatt-und-fristen-2026.md</span>
+├── wissen/             <span class="k"># Artikel, nur nach Freigabe</span>
+│   ├── ablaeufe/reklamation.md
+│   ├── vorlagen/textbausteine-mails.md
+│   └── _regeln/was-nie-hineinkommt.md
+├── eingang/            <span class="k"># offene Vorschläge</span>
+├── briefing/
+└── .git/               <span class="k"># jede Freigabe ein Commit</span></pre>
+        <pre class="code" tabindex="0" style="margin-top:16px" aria-label="Befehle für den Export"><span class="k">$</span> {C} export wissen.zip      <span class="k"># alles, mit Verlauf</span>
+<span class="k">$</span> {C} export --okf ./ordner   <span class="k"># offenes Format</span>
+<span class="k">$</span> {C} import --okf ./ordner   <span class="k"># zurück, als Vorschläge</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt kante">
+    <div class="rahmen">
+      <div class="kopfzeile">
+        <h2>Jeder so, wie er will.</h2>
+        <p class="lead">Der Geschäftsführer testet nachts um drei. Die IT-Abteilung will wissen, wo jedes Byte liegt. Beides geht mit derselben Software.</p>
+      </div>
+      <table class="wege" data-zeige>
+        <thead><tr><th scope="col">Weg</th><th scope="col">Wo die Daten liegen</th><th scope="col">Wer betreibt</th><th scope="col">Passt, wenn</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Managed<small>{inhalt.managedStatus}</small></th><td data-l="Daten">Eigene Instanz je Kunde bei einem Hoster in der EU</td><td data-l="Betrieb">{inhalt.anbieter}, mit AV-Vertrag</td><td data-l="Passt">du in fünf Minuten anfangen und zwei Wochen testen willst</td></tr>
+          <tr><th scope="row">Eigene EU-Cloud</th><td data-l="Daten">Dein Server bei Hetzner, IONOS, STACKIT oder anderen</td><td data-l="Betrieb">Du oder dein Systemhaus</td><td data-l="Passt">der Vertrag direkt zwischen dir und dem Hoster laufen soll</td></tr>
+          <tr><th scope="row">Lokal</th><td data-l="Daten">Dein Rechner, NAS oder Server im Haus</td><td data-l="Betrieb">Du</td><td data-l="Passt">nichts das Haus verlassen darf, auch nicht zur KI</td></tr>
+        </tbody>
+      </table>
+      <p class="klein" style="margin-top:16px">Der Umzug zwischen den Wegen ist Export und Import. Du wechselst jederzeit, auch zurück.</p>
+
+      <ul class="index" style="margin-top:72px">
+        <li><a href="/start/"><span class="wer">Start in 5 Minuten</span><span class="was">Testphase, eigene KI anbinden oder erste Dateien hochladen.</span><Icon name="pfeil" /></a></li>
+        <li><a href="/systemhaus/"><span class="wer">IT und Systemhaus</span><span class="was">Architektur, Rechte, MCP, Betrieb, Updates. Alles, was eine kritische IT fragt.</span><Icon name="pfeil" /></a></li>
+        <li><a href="/kanzlei/"><span class="wer">Kanzleien</span><span class="was">Lokale oder europäische KI, Verschwiegenheit nach § 203 StGB, § 43e BRAO, § 62a StBerG.</span><Icon name="pfeil" /></a></li>
+        <li><a href="/schule-verein/"><span class="wer">Schulen und Vereine</span><span class="was">Selbst hosten, kostenlos. Damit der nächste Kassenwart weiß, was der letzte wusste.</span><Icon name="pfeil" /></a></li>
+        <li><a href="/open-source/"><span class="wer">Quellcode</span><span class="was">Was im Repo liegt, wie die Prüfsuite misst, wie du mitbaust.</span><Icon name="pfeil" /></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band kante">
+    <Foto name="tostedt-winternacht" form="voll" fokus="50% 70%" alt="Verschneites Feld bei Nacht unter einem Sternenhimmel, am Horizont ein Baum und die Lichter eines Ortes." ort="Tostedt, 10. Januar 2026, 22:27 Uhr" />
+  </section>
+
+  <Schluss />
+</Basis>

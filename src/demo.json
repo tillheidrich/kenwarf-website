@@ -1,0 +1,226 @@
+{
+ "erzeugt": "24.10.2026",
+ "betrieb": "Tischlerei Wendt GmbH (erfunden)",
+ "modus": "Testmodus ohne KI",
+ "fragen": [
+  {
+   "frage": "Wie viel Anzahlung nehmen wir bei Einbauküchen?",
+   "status": "beantwortet",
+   "punkte": [
+    {
+     "text": "Anzahlung bei Einbauküchen und Treppen: 30 %",
+     "belege": [
+      1
+     ]
+    }
+   ],
+   "belege": [
+    {
+     "quelle": "quellen/2026/preisblatt-und-fristen-2026.md",
+     "abschnitt": "Anzahlung",
+     "zeilen": [
+      24,
+      24
+     ],
+     "zitat": "Bei Einbauküchen und Treppen nehmen wir immer 30 % Anzahlung.",
+     "geprueft": true,
+     "umgebung": [
+      {
+       "nr": 22,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 23,
+       "text": "Bei Aufträgen über 3.000 € nehmen wir 30 % Anzahlung mit der Auftragsbestätigung.",
+       "treffer": false
+      },
+      {
+       "nr": 24,
+       "text": "Bei Einbauküchen und Treppen nehmen wir immer 30 % Anzahlung.",
+       "treffer": true
+      },
+      {
+       "nr": 25,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 26,
+       "text": "## Zahlungsziel",
+       "treffer": false
+      }
+     ]
+    }
+   ],
+   "hinweis": "Aus der Faktenschicht (Zahlen und Fristen)."
+  },
+  {
+   "frage": "Wann fassen wir ein Angebot nach?",
+   "status": "beantwortet",
+   "punkte": [
+    {
+     "text": "Angebote fassen wir zehn Arbeitstage nach Versand einmal telefonisch nach.",
+     "belege": [
+      1
+     ]
+    },
+    {
+     "text": "„Ich wollte kurz hören, ob unser Angebot angekommen ist und ob Fragen offen sind.",
+     "belege": [
+      2
+     ]
+    }
+   ],
+   "belege": [
+    {
+     "quelle": "quellen/2026/preisblatt-und-fristen-2026.md",
+     "abschnitt": "Preisblatt und Fristen 2026 (Büro) › Nachfassen",
+     "zeilen": [
+      34,
+      36
+     ],
+     "zitat": "Angebote fassen wir zehn Arbeitstage nach Versand einmal telefonisch nach.",
+     "geprueft": true,
+     "umgebung": [
+      {
+       "nr": 32,
+       "text": "Kulanz bis 200 € entscheidet der Meister, darüber der Inhaber.",
+       "treffer": false
+      },
+      {
+       "nr": 33,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 34,
+       "text": "## Nachfassen",
+       "treffer": true
+      },
+      {
+       "nr": 35,
+       "text": "",
+       "treffer": true
+      },
+      {
+       "nr": 36,
+       "text": "Angebote fassen wir zehn Arbeitstage nach Versand einmal telefonisch nach.",
+       "treffer": true
+      },
+      {
+       "nr": 37,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 38,
+       "text": "## Zuständig",
+       "treffer": false
+      }
+     ]
+    },
+    {
+     "quelle": "wissen/vorlagen/textbausteine-mails.md",
+     "abschnitt": "Textbausteine › Nachfassen nach dem Angebot",
+     "zeilen": [
+      34,
+      36
+     ],
+     "zitat": "„Ich wollte kurz hören, ob unser Angebot angekommen ist und ob Fragen offen sind.",
+     "geprueft": true,
+     "umgebung": [
+      {
+       "nr": 32,
+       "text": "„Danke, dass Sie Bescheid geben. Können Sie uns zwei Fotos schicken, eins aus etwa zwei Metern Abstand und eins aus der Nähe mit einem Zollstock oder einer Münze daneben? Dann schaut sich Herr Ohlsen das bis morgen an.“",
+       "treffer": false
+      },
+      {
+       "nr": 33,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 34,
+       "text": "## Nachfassen nach dem Angebot",
+       "treffer": true
+      },
+      {
+       "nr": 35,
+       "text": "",
+       "treffer": true
+      },
+      {
+       "nr": 36,
+       "text": "„Ich wollte kurz hören, ob unser Angebot angekommen ist und ob Fragen offen sind. Wenn Sie sich anders entschieden haben, ist das auch völlig in Ordnung.“",
+       "treffer": true
+      },
+      {
+       "nr": 37,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 38,
+       "text": "## Bitte um Bewertung",
+       "treffer": false
+      }
+     ]
+    }
+   ],
+   "hinweis": "Mock-Antwort aus den besten Fundstellen (keine KI angebunden)."
+  },
+  {
+   "frage": "Wie viel verdient Kai Brandes?",
+   "status": "gehoert_nicht_hierher",
+   "punkte": [],
+   "belege": [
+    {
+     "quelle": "wissen/_regeln/was-nie-hineinkommt.md",
+     "abschnitt": "Personal",
+     "zeilen": [
+      21,
+      21
+     ],
+     "zitat": "Gehalt | Lohn | verdient | Stundenlohn von: Lohndaten gehören in die Lohnbuchhaltung.",
+     "geprueft": true,
+     "umgebung": [
+      {
+       "nr": 19,
+       "text": "## Personal",
+       "treffer": false
+      },
+      {
+       "nr": 20,
+       "text": "",
+       "treffer": false
+      },
+      {
+       "nr": 21,
+       "text": "- Gehalt | Lohn | verdient | Stundenlohn von: Lohndaten gehören in die Lohnbuchhaltung.",
+       "treffer": true
+      },
+      {
+       "nr": 22,
+       "text": "- wer ist krank | krankgeschrieben | Diagnose | Krankheit von: Gesundheitsdaten gehören in die Personalakte.",
+       "treffer": false
+      },
+      {
+       "nr": 23,
+       "text": "- Personalakte | Abmahnung: Personalsachen klärt Jörn persönlich.",
+       "treffer": false
+      }
+     ]
+    }
+   ],
+   "hinweis": "Das gehört nicht in den Wissensordner (Regel: „Gehalt | Lohn | verdient | Stundenlohn von: Lohndaten gehören in die Lohnbuchhaltung.“). Bitte in der zuständigen Fachsoftware oder bei der verantwortlichen Person nachsehen."
+  },
+  {
+   "frage": "Wie hoch ist der Aktienkurs von Tesla?",
+   "status": "steht_nicht_drin",
+   "punkte": [],
+   "belege": [],
+   "hinweis": "Dazu steht nichts im Wissensordner."
+  }
+ ]
+}

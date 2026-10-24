@@ -1,0 +1,30 @@
+---
+import Logo from './Logo.astro';
+import { inhalt, navigation } from '../inhalt';
+---
+<footer class="fuss">
+  <div class="rahmen">
+    <div class="raster">
+      <div>
+        <Logo />
+        <p class="leise" style="margin-top:16px;max-width:42ch">Ein Wissensordner, der mit Beleg antwortet und dir gehört. Ein Projekt von <a href={inhalt.anbieterUrl}>{inhalt.anbieter}</a>, {inhalt.anbieterOrt}.</p>
+        <p class="klein">Diese Seite setzt keine Cookies, zählt keine Besuche und lädt nichts von fremden Servern.</p>
+      </div>
+      <nav aria-label="Seiten">
+        <ul>{navigation.map((n) => <li><a href={n.href}>{n.text}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="Rechtliches">
+        <ul>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+          {inhalt.modell === 'opensource' && inhalt.repoUrl && <li><a href={inhalt.repoUrl}>Quellcode auf GitHub</a></li>}
+          <li><a href={`mailto:${inhalt.kontaktMail}`}>{inhalt.kontaktMail}</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="unten">
+      <span>{inhalt.prototypHinweis ? 'Vorschau, noch nicht gestartet. Inhalte und Funktionsumfang können sich ändern.' : ''}</span>
+      <span>Fotos: Till Heidrich · Stand 24.10.2026</span>
+    </div>
+  </div>
+</footer>

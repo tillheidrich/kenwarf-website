@@ -4,7 +4,6 @@ import type { ImageMetadata } from 'astro';
 import Basis from '../../layouts/Basis.astro';
 import Foto from '../../components/Foto.astro';
 import ArtikelListe from '../../components/ArtikelListe.astro';
-import Icon from '../../components/Icon.astro';
 import { alleArtikel, lesezeit, datumLang, datumIso, zielgruppen, stufeName, type Artikel } from '../../magazin';
 import { inhalt, ORIGIN, mitBasis } from '../../inhalt';
 
@@ -46,7 +45,7 @@ const schema = {
         <p class="ort"><a href="/">Start</a> / <a href="/magazin/">Magazin</a></p>
         <h1>{name(d.titel)}</h1>
         <p class="lead">{name(d.beschreibung)}</p>
-        <p class="artikel-meta"><span>{d.autor}</span><time datetime={datumIso(d.datum)}>{datumLang(d.datum)}</time><span>{minuten} Min. Lesezeit</span></p>
+        <p class="artikel-meta"><span class="feld">Von <b>{d.autor}</b></span><span class="feld">Erschienen am <b><time datetime={datumIso(d.datum)}>{datumLang(d.datum)}</time></b></span><span class="feld">Lesezeit <b>{minuten} Min.</b></span></p>
       </div>
     </header>
     <div class="rahmen artikel-foto">
@@ -68,9 +67,9 @@ const schema = {
   </article>
 
   {weitere.length > 0 && (
-    <section class="abschnitt eng kante">
+    <section class="abschnitt eng kante" aria-labelledby="h-weiter">
       <div class="rahmen">
-        <div class="kopfzeile"><h2>Weiterlesen</h2><p class="lead"><a class="pfeil" href="/magazin/">Alle Beiträge <Icon name="pfeil" /></a></p></div>
+        <div class="kopfzeile"><h2 id="h-weiter">Weiterlesen</h2><p class="lead"><a class="pfeil" href="/magazin/">Alle Beiträge</a></p></div>
         <ArtikelListe artikel={weitere} gross={false} />
       </div>
     </section>

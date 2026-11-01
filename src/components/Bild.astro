@@ -1,11 +1,9 @@
 ---
+// Ausschnitt aus der laufenden Weboberfläche mit den Beispieldaten der Tischlerei Wendt.
 interface Props { src: string; alt: string; pfad?: string; breite?: number; hoehe?: number; laden?: 'lazy' | 'eager'; klasse?: string; }
-const { src, alt, pfad = 'Tischlerei Wendt · Beispieldaten', breite = 1440, hoehe = 900, laden = 'lazy', klasse = '' } = Astro.props;
+const { src, alt, pfad = 'Weboberfläche mit Beispieldaten der Tischlerei Wendt', breite = 1440, hoehe = 900, laden = 'lazy', klasse = '' } = Astro.props;
 ---
-<figure class={`bild ${klasse}`} data-zeige>
-  <div class="fenster">
-    <div class="leiste" aria-hidden="true"><i></i><i></i><i></i><span>{pfad}</span></div>
-    <img src={src} alt={alt} width={breite} height={hoehe} loading={laden} decoding="async" />
-  </div>
-  {Astro.slots.has('default') && <figcaption><slot /></figcaption>}
+<figure class={`bild ${klasse}`}>
+  <img src={src} alt={alt} width={breite} height={hoehe} loading={laden} decoding="async" />
+  <figcaption>{Astro.slots.has('default') && <slot />}<span class="herkunft">{pfad}</span></figcaption>
 </figure>

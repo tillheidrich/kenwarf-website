@@ -1,0 +1,105 @@
+---
+// Signaturelement: der Belegbogen (kern/design/DESIGN.md). Daten nur aus echter Engine-Ausgabe:
+// src/demo.json, erzeugt mit `node werkzeug/demo-daten.mjs "<Frage>" …` (Testmodus ohne KI, Tischlerei Wendt).
+// Ohne JavaScript stehen alle Bögen untereinander, mit JavaScript als Reiter (Pfeiltasten).
+import demo from '../demo.json';
+import { inhalt } from '../inhalt';
+
+type Beleg = (typeof demo.fragen)[number]['belege'][number];
+const kurz: Record<string, string> = {
+  'Wie viel Anzahlung nehmen wir bei Einbauküchen?': 'Anzahlung',
+  'Wann fassen wir ein Angebot nach?': 'Nachfassen',
+  'Wie viel verdient Kai Brandes?': 'Gehalt',
+  'Wie hoch ist der Aktienkurs von Tesla?': 'Aktienkurs',
+};
+const datei = (p: string) => p.split('/').pop() ?? p;
+const zeilenText = (b: Beleg) => (b.zeilen[0] === b.zeilen[1] ? `Zeile ${b.zeilen[0]}` : `Zeilen ${b.zeilen[0]} bis ${b.zeilen[1]}`);
+const ohneLinks = (t: string) => t.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+const gilt = (b: Beleg) => {
+  const f = b.fakt;
+  if (!f) return null;
+  if (f.gilt_ab && f.gilt_bis) return `${f.gilt_ab} bis ${f.gilt_bis}`;
+  if (f.gilt_ab) return `ab ${f.gilt_ab}`;
+  if (f.gilt_bis) return `bis ${f.gilt_bis}`;
+  return f.gueltig ? `am ${demo.erzeugt} gültig, ohne Enddatum` : 'abgelaufen';
+};
+const kopfNr: Record<string, string> = { beantwortet: '', gehoert_nicht_hierher: 'Regel', steht_nicht_drin: 'kein Beleg' };
+---
+<div class="beleg" data-beleg>
+  <div class="fragen" role="tablist" aria-label="Beispielfragen an die Tischlerei Wendt" hidden data-reiter>
+    {demo.fragen.map((f, i) => (
+      <button type="button" role="tab" id={`bt-${i}`} aria-controls={`bb-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{kurz[f.frage] ?? f.frage}</button>
+    ))}
+  </div>
+
+  {demo.fragen.map((f, i) => (
+    <article class="bogen" id={`bb-${i}`} role="tabpanel" aria-labelledby={`bt-${i}`} data-panel>
+      <div class="bogen-kopf"><span>Frage an {inhalt.name}</span><span class="nr">{f.status === 'beantwortet' ? (f.belege.length === 1 ? 'Beleg [1]' : `Belege [1] bis [${f.belege.length}]`) : kopfNr[f.status]}</span></div>
+      <p class="frage">{f.frage}</p>
+
+      {f.status === 'steht_nicht_drin' ? (
+        <p class="leer"><b>Steht nicht drin.</b>{inhalt.name} rät nicht. In den Unterlagen steht dazu nichts, also sagt es genau das.</p>
+      ) : (
+        <div>
+          {f.status === 'beantwortet'
+            ? f.punkte.map((p) => <p class="antwort">{ohneLinks(p.text)}{p.belege.map((n) => <sup>[{n}]</sup>)}</p>)
+            : <p class="antwort">{f.hinweis}</p>}
+          {f.belege.map((b, j) => (
+            <div class="auszug" role="group" aria-label={`Auszug aus ${b.quelle}, ${zeilenText(b)} ${f.status === 'beantwortet' ? 'zitiert' : 'greift'}`}>
+              <div class="datei">{f.belege.length > 1 ? `[${j + 1}] ` : ''}{b.quelle}</div>
+              {b.umgebung.filter((u) => u.text.trim() !== '' || u.treffer).map((u) => (
+                <div class={u.treffer ? 'z halt' : 'z'}><span>{u.nr}</span><span>{u.text}</span></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="etiketten">
+        {f.status === 'beantwortet' && (
+          <p class="zettel"><b>Zitat geprüft</b> am {demo.erzeugt}: steht wörtlich in {f.belege.map((b) => zeilenText(b)).join(' und ')}.</p>
+        )}
+        {f.status === 'beantwortet' && f.belege.map((b) => b.verlauf[0] && (
+          <p class="zettel"><b>Im Verlauf</b> seit {b.verlauf[0].am}: {b.verlauf[0].von}, „{b.verlauf[0].grund}“ (Commit <span class="mono">{b.verlauf[0].commit}</span>).</p>
+        ))}
+        {f.status === 'gehoert_nicht_hierher' && (
+          <p class="zettel"><b>Regel geschrieben</b> vom Betrieb selbst, nicht von {inhalt.name}.</p>
+        )}
+        <dl class="etikett">
+          {f.belege.length > 0
+            ? f.belege.map((b) => <div><dt>Fundstelle</dt><dd class="ort">{datei(b.quelle)}, <em>{zeilenText(b)}</em></dd></div>)
+            : <div><dt>Fundstelle</dt><dd>keine</dd></div>}
+          {f.status === 'beantwortet' && f.belege.map((b) => gilt(b) && <div><dt>Gilt</dt><dd>{gilt(b)}</dd></div>)}
+          {f.status !== 'beantwortet' && <div><dt>Ergebnis</dt><dd>{f.status === 'steht_nicht_drin' ? 'Steht nicht drin' : 'Gehört nicht hierher'}</dd></div>}
+        </dl>
+      </div>
+    </article>
+  ))}
+  <p class="unter">Echte Ausgabe der Engine vom {demo.erzeugt}, Testmodus ohne Sprachmodell, mit Beispieldaten der Tischlerei Wendt. Den Betrieb gibt es nicht, die Software schon. Mit angebundener KI formuliert {inhalt.name} freier. Die Zitatprüfung bleibt dieselbe: Was nicht wörtlich in der Datei steht, fliegt raus.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-beleg]').forEach((w) => {
+    const reiter = w.querySelector<HTMLElement>('[data-reiter]');
+    const tabs = [...w.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...w.querySelectorAll<HTMLElement>('[data-panel]')];
+    if (!reiter || !tabs.length) return;
+    reiter.hidden = false;
+    const zeige = (i: number, fokus = false) => {
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach((p, j) => { p.hidden = i !== j; });
+      if (fokus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => zeige(i));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        if (e.key === 'ArrowRight') { e.preventDefault(); zeige((i + 1) % n, true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); zeige((i - 1 + n) % n, true); }
+        if (e.key === 'Home') { e.preventDefault(); zeige(0, true); }
+        if (e.key === 'End') { e.preventDefault(); zeige(n - 1, true); }
+      });
+    });
+    zeige(0);
+  });
+</script>

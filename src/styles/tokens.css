@@ -1,0 +1,89 @@
+/* Kenwarf, Richtung „Beleg und Zettel“ (provisional, 01.11.2026).
+   Bogen auf Archivkarton, Eisengallus-Tinte, Typus-Rot nur für Nachprüfbares, Haltestreifen für die zitierte Zeile.
+   Schriften selbst gehostet (OFL), Kopie von kern/design/tokens.css, Pfade relativ zu src/styles/. */
+
+@font-face {
+  font-family: 'Atkinson Next';
+  src: url('../fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2') format('woff2');
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Next';
+  src: url('../fonts/atkinson-hyperlegible-next-latin-wght-italic.woff2') format('woff2');
+  font-weight: 200 800; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Mono';
+  src: url('../fonts/atkinson-hyperlegible-mono-latin-wght-normal.woff2') format('woff2');
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* Farben */
+  --karton: oklch(0.928 0.004 230);      /* Grund: Archivkarton */
+  --karton-2: oklch(0.895 0.005 230);    /* Fläche eine Stufe tiefer */
+  --bogen: oklch(0.992 0.002 95);        /* Bogen: nur wo Quelle oder Beleg liegt */
+  --tinte: oklch(0.21 0.008 60);         /* Text, 14.4:1 auf Karton */
+  --tinte-2: oklch(0.42 0.008 60);       /* Nebentext, 6.9:1 auf Karton */
+  --tinte-3: oklch(0.49 0.008 60);       /* Feldnamen, 5.1:1 auf Karton */
+  --typus: oklch(0.52 0.2 29);           /* Typus-Rot: Zeilennummer, Fundstelle, Hauptaktion. 6.0:1 auf Bogen */
+  --typus-tief: oklch(0.44 0.18 29);     /* Hover/aktiv */
+  --streifen: oklch(0.925 0.04 85);      /* Haltestreifen über der zitierten Zeile */
+  --zettel: oklch(0.972 0.012 95);       /* Bestimmungszettel */
+  --linie: oklch(0.21 0.008 60 / 0.16);
+  --linie-stark: oklch(0.21 0.008 60 / 0.42);
+  --feldrand: oklch(0.56 0.008 60);      /* Formularfeld-Rand, 4.6:1 */
+  --dunkel: oklch(0.2 0.008 60);
+  --auf-dunkel: oklch(0.95 0.004 230);
+  --auf-dunkel-2: oklch(0.78 0.006 230);
+  --typus-hell: oklch(0.72 0.16 32);     /* Typus auf Dunkel, 6.8:1 */
+  --fokus: oklch(0.52 0.2 29);
+
+  /* Schrift */
+  --schrift: 'Atkinson Next', system-ui, sans-serif;
+  --mono: 'Atkinson Mono', ui-monospace, Menlo, monospace;
+  --t-h1: clamp(44px, 5.7vw, 84px);
+  --t-h2: clamp(28px, 2.9vw, 42px);
+  --t-h3: 21px;
+  --t-lead: clamp(19px, 1.55vw, 22px);
+  --t-text: 18px;
+  --t-klein: 16px;
+  --t-feld: 14px;
+  --t-code: 15px;
+  --zh-eng: 1.0;
+  --zh-titel: 1.12;
+  --zh-text: 1.6;
+  --lw-titel: -0.025em;
+
+  /* Raum (Schritte 4er-Raster) */
+  --r-1: 4px; --r-2: 8px; --r-3: 12px; --r-4: 16px; --r-5: 24px; --r-6: 32px;
+  --r-7: 48px; --r-8: 64px; --r-9: 96px; --r-10: 128px;
+  --rand: clamp(20px, 4.4vw, 64px);
+  --breite: 1280px;
+  --spalte: 34em;
+
+  /* Form */
+  --radius: 2px;
+  --rahmen: 1px solid var(--linie);
+  --ziel: 44px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dauer: 220ms;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --karton: oklch(0.2 0.006 230);
+    --karton-2: oklch(0.24 0.006 230);
+    --bogen: oklch(0.27 0.006 60);
+    --tinte: oklch(0.95 0.004 230);
+    --tinte-2: oklch(0.8 0.006 230);
+    --tinte-3: oklch(0.72 0.006 230);
+    --typus: oklch(0.72 0.16 32);
+    --typus-tief: oklch(0.8 0.13 32);
+    --streifen: oklch(0.42 0.05 80);
+    --zettel: oklch(0.31 0.008 60);
+    --linie: oklch(0.95 0.004 230 / 0.16);
+    --linie-stark: oklch(0.95 0.004 230 / 0.42);
+    --feldrand: oklch(0.66 0.006 230);
+  }
+}

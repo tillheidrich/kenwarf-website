@@ -2,20 +2,19 @@
 import Basis from '../layouts/Basis.astro';
 import Foto from '../components/Foto.astro';
 import Seitenkopf from '../components/Seitenkopf.astro';
-import Icon from '../components/Icon.astro';
 import { inhalt, mail } from '../inhalt';
 const N = inhalt.name;
 const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir möchten ein Konzept, wie wir ein lokales oder europäisches Modell mit ${N} nutzen können.\n\nKanzlei / Fachrichtung:\nAnzahl Berufsträger und Mitarbeitende:\nVorhandene IT (eigener Server, Systemhaus, Cloud):\n\nMit freundlichen Grüßen`);
 ---
 <Basis titel="Für Kanzleien" beschreibung={`${N} für Rechtsanwalts- und Steuerkanzleien: KI lokal oder bei einem europäischen Anbieter, Antworten mit Fundstelle, Verschwiegenheit nach § 203 StGB, § 43e BRAO und § 62a StBerG sachlich eingeordnet.`}>
-  <Seitenkopf titel={`Eine KI für die Kanzlei, die <span class="mk">im Haus</span> bleiben kann.`} ort="Kanzleien">
+  <Seitenkopf titel={`Eine KI für die Kanzlei, die im Haus bleiben kann.`} ort="Kanzleien">
     <p>Sie entscheiden, wo das Modell läuft: auf einem Rechner in Ihrer Kanzlei oder bei einem europäischen Anbieter mit Auftragsverarbeitungsvertrag. Auch ein großes Modell wie Claude, ChatGPT oder Gemini ist möglich; dann sehen Sie vorher, welche Daten dorthin gehen. {N} verbindet es mit dem Wissen Ihrer Kanzlei und zeigt zu jeder Antwort die Fundstelle.</p>
   </Seitenkopf>
 
   <section class="abschnitt eng">
     <div class="rahmen">
       <div class="kopfzeile"><h2>Vier Aufbauten</h2><p class="lead">Alle vier nutzen dieselbe Software. Welcher passt, hängt davon ab, was Ihre Kanzlei herausgeben möchte.</p></div>
-      <table class="wege" data-zeige>
+      <table class="wege">
         <thead><tr><th scope="col">Aufbau</th><th scope="col">Wo {N} läuft</th><th scope="col">Wo das Modell läuft</th><th scope="col">Was das Haus verlässt</th></tr></thead>
         <tbody>
           <tr><th scope="row">Vollständig lokal</th><td data-l={`${N}`}>Server in der Kanzlei</td><td data-l="Modell">Ollama oder vLLM auf eigener Hardware</td><td data-l="Verlässt das Haus">Nichts</td></tr>
@@ -27,8 +26,8 @@ const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir mö
     </div>
   </section>
 
-  <div class="rahmen">
-    <section class="block" data-zeige>
+  <div class="rahmen bloecke">
+    <section class="block">
       <h2>Berufsrecht, sachlich<small>Keine Rechtsberatung. Bitte prüfen Sie Ihre Konstellation selbst oder mit Ihrer Kammer.</small></h2>
       <div class="prosa">
         <p><span class="para">§ 203 StGB</span> schützt Mandatsgeheimnisse. Mitwirkende Personen, etwa IT-Dienstleister, dürfen Geheimnisse erfahren, soweit es für ihre Tätigkeit erforderlich ist. Die Kanzlei muss sie zur Geheimhaltung verpflichten.</p>
@@ -43,7 +42,7 @@ const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir mö
       </div>
     </section>
 
-    <section class="block" data-zeige>
+    <section class="block">
       <h2>Womit Sie anfangen</h2>
       <div class="prosa">
         <p>Mit der Kanzleiorganisation, nicht mit Mandatsakten. Dort liegt viel Wissen, das bisher in Köpfen und alten Mails steckt:</p>
@@ -57,7 +56,7 @@ const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir mö
       </div>
     </section>
 
-    <section class="block" data-zeige>
+    <section class="block">
       <h2>Was Sie vorher prüfen können</h2>
       <div class="prosa">
         <ul>
@@ -76,8 +75,8 @@ const anfrage = mail(`${N}: Konzept für unsere Kanzlei`, `Guten Tag,\n\nwir mö
 
   <section class="schluss">
     <div class="rahmen zeile">
-      <div><h2>Ein Konzept für Ihre Kanzlei.</h2><p class="lead" style="margin-top:20px">Aufbau, Datenfluss, Verträge und die ersten Inhalte, passend zu Ihrer IT. Lokal oder mit europäischem Modell.</p></div>
-      <div><a class="knopf haupt" href={anfrage}>Konzept anfordern <Icon name="pfeil" /></a></div>
+      <div><h2>Ein Konzept für Ihre Kanzlei.</h2><p class="lead">Aufbau, Datenfluss, Verträge und die ersten Inhalte, passend zu Ihrer IT. Lokal oder mit europäischem Modell.</p></div>
+      <div class="aktionen"><a class="knopf haupt" href={anfrage}>Konzept anfordern</a></div>
     </div>
   </section>
 </Basis>

@@ -10,7 +10,7 @@ const { artikel, gross = true } = Astro.props;
       <a class="artikel-karte" href={`/magazin/${a.id}/`}>
         <Foto name={a.data.foto} form="quer" fokus={a.data.fokus} alt="" sizes={i === 0 && gross ? '(min-width: 900px) 58vw, 100vw' : '(min-width: 900px) 30vw, 100vw'} />
         <div class="artikel-karte-text">
-          <p class="artikel-meta"><time datetime={datumIso(a.data.datum)}>{datumLang(a.data.datum)}</time><span>{lesezeit(a.body ?? '')} Min. Lesezeit</span></p>
+          <p class="artikel-meta"><span><time datetime={datumIso(a.data.datum)}>{datumLang(a.data.datum)}</time>, {lesezeit(a.body ?? '')} Min. Lesezeit</span></p>
           <h3>{a.data.titel}</h3>
           <p class="artikel-auszug">{a.data.beschreibung}</p>
           <p class="artikel-tags">{a.data.zielgruppen.map((z) => <span>{zielgruppen[z]}</span>)}{a.data.stufen.map((s) => <span class="stufe">{stufeKurz(s)}</span>)}</p>

@@ -2,18 +2,17 @@
 import Basis from '../layouts/Basis.astro';
 import Foto from '../components/Foto.astro';
 import Seitenkopf from '../components/Seitenkopf.astro';
-import Icon from '../components/Icon.astro';
 import { inhalt } from '../inhalt';
 const N = inhalt.name;
 const C = inhalt.befehl;
 ---
 <Basis titel="Für Schulen und Vereine" beschreibung={`${N} selbst hosten, kostenlos: Wissen von Schule oder Verein mit Fundstelle, ohne Konto bei einem KI-Konzern. Damit Übergaben im Ehrenamt nicht bei null anfangen.`}>
-  <Seitenkopf titel={`Damit der nächste Kassenwart weiß, <span class="mk">was der letzte wusste</span>.`} ort="Schulen und Vereine">
+  <Seitenkopf titel={`Damit der nächste Kassenwart weiß, was der letzte wusste.`} ort="Schulen und Vereine">
     <p>In Vereinen und Schulen wechseln die Leute öfter als das Wissen. {N} hält fest, wie die Hallenbelegung läuft, wer den Schlüssel hat und warum der Zuschuss im März beantragt wird. Selbst gehostet ist es kostenlos.</p>
   </Seitenkopf>
 
-  <div class="rahmen">
-    <section class="block" data-zeige>
+  <div class="rahmen bloecke">
+    <section class="block">
       <h2>Was hineingehört</h2>
       <div class="prosa">
         <ul>
@@ -26,14 +25,14 @@ const C = inhalt.befehl;
       </div>
     </section>
 
-    <section class="block" data-zeige>
+    <section class="block">
       <h2>Die Übergabe<small><span class="stand heute">läuft heute</span></small></h2>
       <div class="prosa">
         <p>Bei einer Wahl wechselt der Vorstand, das Wissen bleibt im Ordner. Jeder Artikel hat eine verantwortliche Person und einen Prüftermin, und {N} zeigt, welche Artikel fällig sind. Wer neu im Amt ist, fragt den Ordner statt die Vorgängerin. Ein Übergabepaket auf Knopfdruck ist Fahrplan.</p>
       </div>
     </section>
 
-    <section class="block" data-zeige>
+    <section class="block">
       <h2>Selbst hosten</h2>
       <div class="prosa">
         <p>Ein Linux-Server oder ein NAS mit Docker reicht, etwa der Rechner, auf dem schon die Vereinscloud läuft. Kein Konto beim Hersteller, keine Telemetrie. Mit einem lokalen Modell über Ollama verlässt keine Frage das Haus.</p>
@@ -47,7 +46,7 @@ const C = inhalt.befehl;
       </div>
     </section>
 
-    <section class="block" data-zeige>
+    <section class="block">
       <h2>Datenschutz</h2>
       <div class="prosa">
         <ul>
@@ -65,8 +64,8 @@ const C = inhalt.befehl;
 
   <section class="schluss">
     <div class="rahmen zeile">
-      <div><h2>Kostenlos, wenn ihr es selbst betreibt.</h2><p class="lead" style="margin-top:20px">Der Quellcode ist offen. Ihr zahlt nur, wenn ihr Hilfe wollt.</p></div>
-      <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center"><a class="knopf haupt" href="/open-source/">Zum Quellcode <Icon name="pfeil" /></a><a class="pfeil" href="/start/#lokal">Installationsbefehl</a></div>
+      <div><h2>Kostenlos, wenn ihr es selbst betreibt.</h2><p class="lead">Der Quellcode ist offen. Ihr zahlt nur, wenn ihr Hilfe wollt.</p></div>
+      <div class="aktionen"><a class="knopf haupt" href="/open-source/">Zum Quellcode</a><a class="pfeil" href="/start/#lokal">Installationsbefehl</a></div>
     </div>
   </section>
 </Basis>

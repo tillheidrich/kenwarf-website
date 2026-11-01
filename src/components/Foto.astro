@@ -25,7 +25,7 @@ if (!bild) throw new Error(`Foto fehlt: ${name}`);
 const breiten = [480, 828, 1200, 1680, 2400].filter((b) => b <= bild.width);
 const standardSizes = form === 'voll' ? '100vw' : form === 'hoch' ? '(min-width: 900px) 40vw, 100vw' : '(min-width: 900px) 55vw, 100vw';
 ---
-<figure class={`foto foto-${form} ${klasse}`} data-zeige style={`--fokus:${fokus}`}>
+<figure class={`foto foto-${form} ${klasse}`} style={`--fokus:${fokus}`}>
   <Picture src={bild} alt={alt} formats={['avif', 'webp']} widths={breiten} sizes={sizes ?? standardSizes} loading={laden} decoding="async" quality={form === 'voll' ? 62 : 68} />
-  {ort && <figcaption><span class="foto-ort">{ort}</span><slot /></figcaption>}
+  {ort && <figcaption><span class="foto-ort">{ort.includes('Till Heidrich') ? ort : `${ort}. Foto: Till Heidrich`}</span><slot /></figcaption>}
 </figure>

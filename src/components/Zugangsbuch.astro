@@ -1,0 +1,46 @@
+---
+// Die sechs Stufen als Zugangsbuch: Datumsspalte (Tag 1, Woche 2 …), Stufe, ein Satz, Stand.
+// voll = ausführlich mit „Läuft heute“, „Fahrplan“ und „Selbst messen“ (So funktioniert es).
+import { stufen, standText } from '../inhalt';
+interface Props { voll?: boolean; }
+const { voll = false } = Astro.props;
+---
+{voll ? (
+  <ol class="eintraege" aria-label="Die sechs Stufen">
+    {stufen.map((s, i) => (
+      <li class="eintrag" id={`stufe-${i + 1}`}>
+        <p class="wann">{s.zeit}<br /><span class={`stand ${s.stand}`}>{standText[s.stand]}</span></p>
+        <div>
+          <h3>{s.name}</h3>
+          <p class="satz">{s.satz} {s.wert}</p>
+        </div>
+        <div class="listen">
+          <div>
+            <p class="feld">Läuft heute</p>
+            <ul class="heute">{s.heute.map((h) => <li>{h}</li>)}</ul>
+          </div>
+          {s.fahrplan.length > 0 && (
+            <div>
+              <p class="feld">Fahrplan</p>
+              <ul>{s.fahrplan.map((h) => <li>{h}</li>)}</ul>
+            </div>
+          )}
+        </div>
+        <p class="messen"><span class="feld" style="display:inline">Selbst messen: </span>{s.messen}</p>
+      </li>
+    ))}
+  </ol>
+) : (
+  <div>
+    <table class="buch">
+      <caption>Die sechs Stufen, in der Reihenfolge, in der sie im Betrieb ankommen</caption>
+      <thead><tr><th scope="col">Wann</th><th scope="col">Stufe</th><th scope="col">Was du merkst</th><th scope="col">Stand</th></tr></thead>
+      <tbody>
+        {stufen.map((s) => (
+          <tr><td class="wann">{s.zeit}</td><th scope="row" class="name">{s.name}</th><td class="satz">{s.satz}</td><td><span class={`stand ${s.stand}`}>{standText[s.stand]}</span></td></tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="legende">„Teilweise“ heißt: Ein Teil läuft heute, der Rest steht im Fahrplan und wird nicht als Funktion beworben.</p>
+  </div>
+)}

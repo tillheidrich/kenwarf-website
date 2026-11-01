@@ -3,7 +3,6 @@ import Basis from '../layouts/Basis.astro';
 import Foto from '../components/Foto.astro';
 import Seitenkopf from '../components/Seitenkopf.astro';
 import Bild from '../components/Bild.astro';
-import Icon from '../components/Icon.astro';
 import { inhalt, testphaseHref } from '../inhalt';
 const N = inhalt.name;
 const C = inhalt.befehl;
@@ -12,46 +11,46 @@ const R = inhalt.repoUrl ?? inhalt.repo;
 const I = inhalt.image;
 ---
 <Basis titel="Start in 5 Minuten" beschreibung={`${N} starten: ${inhalt.testTage} Tage als Managed-Dienst testen, in der eigenen EU-Cloud oder lokal betreiben. Eigene KI per MCP anbinden oder erste Dateien hochladen.`}>
-  <Seitenkopf titel={`Nachts um drei angefangen. <span class="mk">Fünf Minuten</span> später die erste Antwort.`} ort="Start in 5 Minuten">
+  <Seitenkopf titel={`Nachts um drei angefangen. Fünf Minuten später die erste Antwort.`} ort="Start in 5 Minuten">
     <p>Drei Wege, dieselbe Software. Du kannst später wechseln, denn der Umzug ist Export und Import.</p>
     <p class="klein">Die fünf Minuten zählen ab dem Start des fertigen Images. Gemessen haben wir lokal mit Docker rund 10 Sekunden bis zur ersten belegten Antwort, mit Test-KI und ohne die Zeit für den Bau des Images.</p>
   </Seitenkopf>
 
   <section class="abschnitt eng">
     <div class="rahmen">
-      <div class="wegwahl" data-zeige>
+      <div class="wegwahl">
         <section class="erst">
-          <span class="tag">Zum Testen · {inhalt.managedStatus}</span>
+          <p class="feld">Zum Testen, Stand: <b>{inhalt.managedStatus}</b></p>
           <h2>Managed, {inhalt.testTage} Tage testen</h2>
           <p class="leise">Wir betreiben {N} für dich. Du legst los, ohne einen Server anzufassen.</p>
           <ul>
-            <li><Icon name="haken" /><span>Eigene Instanz nur für deinen Betrieb, bei einem Hoster in der EU</span></li>
-            <li><Icon name="haken" /><span>Eigene KI anbinden oder erste Dateien hochladen</span></li>
-            <li><Icon name="haken" /><span>Am Ende: weitermachen, alles exportieren oder löschen lassen</span></li>
-            <li><Icon name="haken" /><span>Später Umzug in die eigene Cloud ohne Datenverlust</span></li>
+            <li>Eigene Instanz nur für deinen Betrieb, bei einem Hoster in der EU</li>
+            <li>Eigene KI anbinden oder erste Dateien hochladen</li>
+            <li>Am Ende: weitermachen, alles exportieren oder löschen lassen</li>
+            <li>Später Umzug in die eigene Cloud ohne Datenverlust</li>
           </ul>
-          <a class="knopf haupt" href={testphaseHref} style="background:var(--blatt)">Testphase starten <Icon name="pfeil" /></a>
-          <p class="klein" style="margin-top:14px">{inhalt.checkoutUrl ? 'Der Bezahlvorgang läuft über Mollie.' : 'Der Bezahlvorgang ist noch nicht freigeschaltet. Bis dahin öffnet der Knopf eine vorbereitete Mail.'}</p>
+          <a class="knopf haupt" href={testphaseHref}>Testphase starten</a>
+          <p class="klein">{inhalt.checkoutUrl ? 'Der Bezahlvorgang läuft über Mollie.' : 'Der Bezahlvorgang ist noch nicht freigeschaltet. Bis dahin öffnet der Knopf eine vorbereitete Mail.'}</p>
         </section>
         <section>
-          <span class="tag leise">Für dein Systemhaus</span>
+          <p class="feld">Für dein Systemhaus</p>
           <h2>Eigene EU-Cloud</h2>
           <p class="leise">Dein Server, dein Vertrag mit dem Hoster. Ein Container, ein Datenordner.</p>
           <ul>
-            <li><Icon name="haken" /><span>Hetzner, IONOS, STACKIT oder jeder Linux-Server mit Docker</span></li>
-            <li><Icon name="haken" /><span>Wir sehen deine Daten nicht</span></li>
-            <li><Icon name="haken" /><span>Einrichtung durch uns auf Wunsch</span></li>
+            <li>Hetzner, IONOS, STACKIT oder jeder Linux-Server mit Docker</li>
+            <li>Wir sehen deine Daten nicht</li>
+            <li>Einrichtung durch uns auf Wunsch</li>
           </ul>
           <a class="knopf neben" href="#eigene-cloud">Zur Anleitung</a>
         </section>
         <section>
-          <span class="tag leise">Für alle, die nichts herausgeben</span>
+          <p class="feld">Für alle, die nichts herausgeben</p>
           <h2>Lokal</h2>
           <p class="leise">Auf dem eigenen Rechner, NAS oder Server. Mit lokalem Modell verlässt nichts das Haus.</p>
           <ul>
-            <li><Icon name="haken" /><span>Ein Befehl mit Docker</span></li>
-            <li><Icon name="haken" /><span>KI lokal über Ollama</span></li>
-            <li><Icon name="haken" /><span>Kostenlos{inhalt.modell === 'opensource' ? ', Quellcode offen' : ''}</span></li>
+            <li>Ein Befehl mit Docker</li>
+            <li>KI lokal über Ollama</li>
+            <li>Kostenlos{inhalt.modell === 'opensource' ? ', Quellcode offen' : ''}</li>
           </ul>
           <a class="knopf neben" href="#lokal">Zum Befehl</a>
         </section>
@@ -69,7 +68,7 @@ const I = inhalt.image;
         <h2>Die fünf Minuten</h2>
         <p class="lead">So soll der Managed-Weg ablaufen, sobald er startet. Der Managed-Dienst ist in Vorbereitung. Der Einrichtungsassistent nach der ersten Anmeldung läuft heute: Mit Docker lässt sich derselbe Ablauf lokal nachstellen, gemessen rund 10 Sekunden ab dem Start des Containers bis zur ersten belegten Antwort, mit Test-KI.</p>
       </div>
-      <ol class="zeitstrahl" data-zeige>
+      <ol class="zeitstrahl">
         <li><b>Minute 0</b><span>Testphase starten, Betriebsname eintragen.</span></li>
         <li><b>Minute 1</b><span>Deine Instanz läuft, du meldest dich an.</span></li>
         <li><b>Minute 2</b><span>KI anbinden oder drei Dateien hineinziehen.</span></li>
@@ -81,7 +80,7 @@ const I = inhalt.image;
 
   <section class="abschnitt eng kante">
     <div class="rahmen zwei schief">
-      <div class="prosa" data-zeige>
+      <div class="prosa">
         <h2>{inhalt.testTage} Tage, ohne Tricks</h2>
         <p>Wer zwei Wochen mit dem eigenen Wissen gearbeitet hat, weiß, ob es sich lohnt. Dafür braucht es keine Druckmittel.</p>
         <ul>
@@ -92,7 +91,7 @@ const I = inhalt.image;
         </ul>
         <p class="klein">Fristen und Ablauf im Detail werden vor dem Start des Managed-Dienstes festgelegt.</p>
       </div>
-      <ol class="zeitstrahl" data-zeige style="align-self:center">
+      <ol class="zeitstrahl" style="align-self:center">
         <li><b>Tag 1</b><span>Erste Fragen, erste Belege.</span></li>
         <li><b>Tag 7</b><span>Zwischenstand, nur für dich.</span></li>
         <li><b>Tag 12</b><span>Erinnerung per Mail.</span></li>
@@ -103,7 +102,7 @@ const I = inhalt.image;
 
   <section class="abschnitt kante" id="ki">
     <div class="rahmen zwei">
-      <div class="prosa" data-zeige>
+      <div class="prosa">
         <h2>Eigene KI anbinden</h2>
         <p>Zwei Richtungen, beide gehen: {N} nutzt ein Modell, um zu antworten. Und deine KI-Werkzeuge nutzen {N}, um nachzuschlagen.</p>
         <p><b>Claude, ChatGPT/Codex, Gemini (über OpenAI-kompatible Schnittstelle), ein EU-Anbieter oder ein lokales Modell: du entscheidest. Wir zeigen dir ehrlich, wohin die Daten dabei gehen.</b></p>
@@ -117,7 +116,7 @@ const I = inhalt.image;
         <h3>{N} für deine KI-Werkzeuge</h3>
         <p>Claude, ChatGPT, Cursor oder ein eigener Agent verbinden sich über MCP. Sie dürfen suchen, lesen und fragen. Agenten und OAuth-Zugänge legen nur Vorschläge in den Eingang. Freigeben über MCP geht nur mit dem eigenen Schlüssel eines Freigebers und dem ausdrücklichen Scope <code>kern:freigeben</code>, nie für Agenten oder OAuth. Eigene Arbeitsnotizen eines Agenten liegen getrennt vom Wissen. Heute laufen Schlüssel je Person, die Anmeldung per OAuth 2.1 und lokales MCP über stdio für Installationen im VPN; der Praxistest mit ChatGPT und Claude steht aus.</p>
       </div>
-      <div data-zeige>
+      <div>
         <pre class="code" tabindex="0" aria-label="MCP-Konfiguration">{`{
   "mcpServers": {
     "${C}": {
@@ -136,7 +135,7 @@ const I = inhalt.image;
 
   <section class="abschnitt eng kante">
     <div class="rahmen zwei schief">
-      <div class="prosa" data-zeige>
+      <div class="prosa">
         <h2>Oder Kontext hochladen</h2>
         <p>Keine KI zur Hand? Dann fang mit Dateien an. PDF, Word, Markdown, Text, Webseiten. Ganze Wissenssammlungen kommen per Import:</p>
         <ul>
@@ -189,10 +188,10 @@ const I = inhalt.image;
     </div>
   </section>
 
-  <section class="schluss kante">
+  <section class="schluss">
     <div class="rahmen zeile">
       <h2>Zwei Wochen. Dann weißt du es.</h2>
-      <div><a class="knopf haupt" href={testphaseHref}>Testphase starten <Icon name="pfeil" /></a></div>
+      <div class="aktionen"><a class="knopf haupt" href={testphaseHref}>Testphase starten</a></div>
     </div>
   </section>
 </Basis>
